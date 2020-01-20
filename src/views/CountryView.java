@@ -106,15 +106,15 @@ public class CountryView extends javax.swing.JFrame {
         TableCountry = new javax.swing.JTable();
         TextRidCountry = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        ComboSearch = new javax.swing.JComboBox<>();
+        Search = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jInternalFrame1.setVisible(true);
 
-        jLabel1.setText("Insert New Region");
+        jLabel1.setText("Country Table");
 
-        jLabel2.setText("Cid");
+        jLabel2.setText("Country Id");
 
         jLabel3.setText("Name");
 
@@ -161,7 +161,7 @@ public class CountryView extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Cid", "Name", "Rid"
+                "Id", "Name", "RegionId"
             }
         ));
         TableCountry.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -177,12 +177,12 @@ public class CountryView extends javax.swing.JFrame {
             }
         });
 
-        jLabel4.setText("Rid");
+        jLabel4.setText("Region Id");
 
-        ComboSearch.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Id", "Name" }));
-        ComboSearch.addActionListener(new java.awt.event.ActionListener() {
+        Search.setText("Search");
+        Search.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ComboSearchActionPerformed(evt);
+                SearchActionPerformed(evt);
             }
         });
 
@@ -191,46 +191,40 @@ public class CountryView extends javax.swing.JFrame {
         jInternalFrame1Layout.setHorizontalGroup(
             jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jInternalFrame1Layout.createSequentialGroup()
-                .addGap(37, 37, 37)
+                .addContainerGap()
                 .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jInternalFrame1Layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(TextSearch, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jInternalFrame1Layout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addComponent(BtnInsertCountry)
+                                .addGap(18, 18, 18)
+                                .addComponent(BtnUpdateCountry)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(BtnDeleteCountry)
+                            .addComponent(Search))
+                        .addGap(0, 2, Short.MAX_VALUE))
                     .addGroup(jInternalFrame1Layout.createSequentialGroup()
                         .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addGap(10, 10, 10)
+                        .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(TextCidCountry)
+                            .addComponent(TextRidCountry)
+                            .addComponent(TextNameCountry)
                             .addGroup(jInternalFrame1Layout.createSequentialGroup()
-                                .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(TextSearch, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jInternalFrame1Layout.createSequentialGroup()
-                                        .addGap(10, 10, 10)
-                                        .addComponent(BtnInsertCountry)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(BtnUpdateCountry)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(BtnDeleteCountry)
-                                    .addComponent(ComboSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 12, Short.MAX_VALUE))
-                            .addGroup(jInternalFrame1Layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jInternalFrame1Layout.createSequentialGroup()
-                                        .addGap(53, 53, 53)
-                                        .addComponent(jLabel1)
-                                        .addGap(0, 0, Short.MAX_VALUE))
-                                    .addGroup(jInternalFrame1Layout.createSequentialGroup()
-                                        .addGap(16, 16, 16)
-                                        .addComponent(TextCidCountry))))
-                            .addGroup(jInternalFrame1Layout.createSequentialGroup()
-                                .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel4))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(TextRidCountry)
-                                    .addComponent(TextNameCountry))))
-                        .addContainerGap())))
+                                .addGap(14, 14, 14)
+                                .addComponent(jLabel1)
+                                .addGap(0, 0, Short.MAX_VALUE)))))
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jInternalFrame1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29))
         );
         jInternalFrame1Layout.setVerticalGroup(
             jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -256,10 +250,10 @@ public class CountryView extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(TextSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ComboSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Search))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(42, Short.MAX_VALUE))
+                .addContainerGap(43, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -293,7 +287,7 @@ public class CountryView extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_BtnInsertCountryActionPerformed
     private void TextSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextSearchActionPerformed
-        
+
     }//GEN-LAST:event_TextSearchActionPerformed
     private void BtnUpdateCountryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnUpdateCountryActionPerformed
         int confirm = JOptionPane.showConfirmDialog(this, "Data anda akan diperbarui", "Konfirmasi", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
@@ -329,12 +323,8 @@ public class CountryView extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_TextRidCountryActionPerformed
 
-    private void ComboSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboSearchActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ComboSearchActionPerformed
-
     private void TextSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TextSearchKeyReleased
-        String filter = (String) ComboSearch.getSelectedItem();
+        String filter = (String) Search.getText();
         String val = TextSearch.getText();
         switch (filter) {
             case "Id":
@@ -372,6 +362,22 @@ public class CountryView extends javax.swing.JFrame {
                 break;
         }// TODO add your handling code here:
     }//GEN-LAST:event_TextSearchKeyReleased
+
+    private void SearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchActionPerformed
+        DefaultTableModel model = (DefaultTableModel) TableCountry.getModel();
+        List<Country> act2 = icc.search(Search.getText());
+
+        model.setRowCount(0);
+        Object[] row = new Object[3];
+
+        for (int i = 0; i < act2.size(); i++) {
+            row[0] = i + 1;
+            row[1] = act2.get(i).getCid();
+            row[2] = act2.get(i).getName();
+            model.addRow(row);
+        }
+
+    }//GEN-LAST:event_SearchActionPerformed
 
     /**
      * @param args the command line arguments
@@ -419,7 +425,7 @@ public class CountryView extends javax.swing.JFrame {
     private javax.swing.JButton BtnDeleteCountry;
     private javax.swing.JButton BtnInsertCountry;
     private javax.swing.JButton BtnUpdateCountry;
-    private javax.swing.JComboBox<String> ComboSearch;
+    private javax.swing.JButton Search;
     private javax.swing.JTable TableCountry;
     private javax.swing.JTextField TextCidCountry;
     private javax.swing.JTextField TextNameCountry;

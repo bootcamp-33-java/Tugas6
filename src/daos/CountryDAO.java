@@ -43,12 +43,12 @@ public class CountryDAO implements ICountryDAO {
     }
 
     @Override
-    public List<Country> getById(String c_id) {
+    public List<Country> getById(String id) {
         List<Country> listCountry = new ArrayList<Country>();
         String query = "SELECT * FROM COUNTRIES WHERE country_id = ? ";
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setString(1, c_id);
+            preparedStatement.setString(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 Country c = new Country(resultSet.getString(1),  resultSet.getString(2), resultSet.getInt(3));
@@ -114,12 +114,13 @@ public class CountryDAO implements ICountryDAO {
         return result;
     }
 
-    public boolean delete(String c_id) {
+    @Override
+    public boolean delete(String id) {
         boolean result = false;
         String query = "DELETE FROM COUNTRIES WHERE country_id = ?";
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setString(1, c_id);
+            preparedStatement.setString(1, id);
             preparedStatement.executeQuery();
             result = true;
         } catch (Exception e) {

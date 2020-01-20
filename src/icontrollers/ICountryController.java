@@ -14,10 +14,10 @@ import models.Country;
  */
 public interface ICountryController {
     public List<Country> getAll();
-    public List<Country> getById(String c_id);
+    public List<Country> getById(String id);
     public List<Country> search(String Key);
-    public String insert(String c_id,String name,String r_id);
-    public String update(String c_id, String name, String r_id);
-    public String delete(String c_id);
+    public String insert(String id,String name,String regionId);
+    public String update(String id, String name, String regionId);
+    public String delete(String id);
     public Iterable<Country> getByName(String Val);
 }

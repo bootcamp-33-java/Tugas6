@@ -15,7 +15,7 @@ import models.Country;
 public interface ICountryDAO {
      public List<Country> getAll();
 
-    public List<Country> getById(String c_id);
+    public List<Country> getById(String id);
 
     public List<Country> search(String key);
 
@@ -23,5 +23,5 @@ public interface ICountryDAO {
 
     public boolean update(Country r);
 
-    public boolean delete(String c_id);
+    public boolean delete(String id);
 }
