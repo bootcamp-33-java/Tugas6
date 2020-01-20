@@ -27,6 +27,8 @@ public class CobacobaGit {
         //LULUSAN TEERBAIK
         
         System.out.println("asiap");
+        System.out.println("asiap");
+        System.out.println("asiap");
     }
     
 }
