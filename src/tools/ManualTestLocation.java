@@ -47,7 +47,7 @@ public class ManualTestLocation {
     }
     
         public void search() {
-        for (Location location : ildao.search("1")) {
+        for (Location location : ildao.search("Cola")) {
             System.out.print(location.getId() + "  | ");
             System.out.print(location.getAddress() + " |  ");
             System.out.print(location.getPostalCode() + " |  ");
