@@ -23,6 +23,8 @@ public class CobacobaGit {
         System.out.println("Bagus punya");
         System.out.println("TERRRR");
         System.out.println("Agung terbaik samarinda");
+        
+        //LULUSAN TEERBAIK
     }
     
 }
