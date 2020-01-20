@@ -33,7 +33,9 @@ public class CobacobaGit {
         System.out.println("asiap");
         System.out.println("asiap");
         System.out.println("asial");
-        System.out.println("kakakakka");
+        System.out.println("Agung Bagus Sahabat Selamanya");
+        System.out.println("AKU WIS ISO PUSH");
+        System.out.println("dxdxdxdxdxdxd");
     }
     
 }
