@@ -93,7 +93,7 @@ public class DepartmentDAO implements IDepartmentDAO{
         String query = "INSERT INTO DEPARTMENTS(DEPARTMENT_ID, DEPARTMENT_NAME, MANAGER_ID, LOCATION_ID) VALUES (?, ?, ?, ?)";
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setInt(1, l.getId());
+            preparedStatement.setInt(1, l.get());
             preparedStatement.setString(2, l.getStradd() );
             preparedStatement.setInt(3, l.getPoscode());
             preparedStatement.setString(4, l.getCity() );

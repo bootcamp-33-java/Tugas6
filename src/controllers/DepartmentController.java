@@ -7,7 +7,7 @@ package controllers;
 
 import daos.DepartmentDAO;
 import daos.LocationDAO;
-import icontrollers.ILocationController;
+import icontrollers.IDepartmentController;
 import idaos.IDepartmentDAO;
 import java.sql.Connection;
 import java.util.List;
@@ -22,5 +22,35 @@ public class DepartmentController implements IDepartmentController {
     
     public DepartmentController(Connection connection) {
         iddao = new DepartmentDAO(connection);
+    }
+
+    @Override
+    public List<Department> getAll() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<Department> getById(String Id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<Department> search(String Key) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public String insert(String id, String name, String managerId, String locationId) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public String update(String id, String name, String managerId, String locationId) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public String delete(String id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
