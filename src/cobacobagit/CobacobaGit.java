@@ -18,6 +18,7 @@ public class CobacobaGit {
         System.out.println("");// TODO code application logic here
         System.out.println("hay");
         System.out.println("kamu PNS ya?");
+        System.out.println("Betul Betul Betul");
     }
     
 }
