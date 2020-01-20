@@ -25,6 +25,8 @@ public class CobacobaGit {
         System.out.println("Agung terbaik samarinda");
         
         //LULUSAN TEERBAIK
+        
+        System.out.println("asiap");
     }
     
 }
