@@ -20,6 +20,7 @@ public class CobacobaGit {
         System.out.println("SS");
         System.out.println("TEST1");
         System.out.println("Bisa Pull");
+        System.out.println("Bagus punya");
     }
     
 }
