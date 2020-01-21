@@ -12,45 +12,69 @@ import idaos.IDepartmentDAO;
 import java.sql.Connection;
 import java.util.List;
 import models.Department;
+import models.Location;
+
 /**
  *
  * @author Insane
  */
 public class DepartmentController implements IDepartmentController {
-    
+
     private IDepartmentDAO iddao;
-    
+
     public DepartmentController(Connection connection) {
         iddao = new DepartmentDAO(connection);
     }
 
     @Override
     public List<Department> getAll() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return iddao.getAll();
     }
 
     @Override
-    public List<Department> getById(String Id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public List<Department> getById(int Id) {
+        return iddao.getById(Id);
     }
 
     @Override
     public List<Department> search(String Key) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return iddao.search(Key);
     }
 
     @Override
     public String insert(String id, String name, String managerId, String locationId) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String result = "";
+        Department department = new Department(Integer.parseInt(id), name, Integer.parseInt(managerId), locationId);
+        if (iddao.insert(department)) {
+            result = "Data berhasil ditambah";
+        } else {
+            result = "Maaf data gagal ditambah";
+        }
+        return result;
     }
 
     @Override
     public String update(String id, String name, String managerId, String locationId) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String result = "";
+        Department department = new Department(Integer.parseInt(id), name, Integer.parseInt(managerId), locationId);
+        if (iddao.update(department)) {
+            result = "Data berhasil diupdate";
+        } else {
+            result = "Maaf data gagal diupdate";
+        }
+        return result;
     }
 
     @Override
     public String delete(String id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String result = "";
+        if (iddao.delete(Integer.parseInt(id))) {
+            result = "Data berhasil dihapus";
+        } else {
+            result = "Maaf data gagal dihapus";
+        }
+        return result;
     }
+
+    
 }

@@ -11,10 +11,10 @@ package models;
  */
 public class Department {
 
-    public int id;
-    public String name;
-    public int managerId;
-    public int locationId;
+    private int id;
+    private String name;
+    private int managerId;
+    private String locationId;
     
     public Department() {
 
@@ -24,7 +24,7 @@ public class Department {
         this.id = id;
         this.name = name;
         this.managerId = managerId;
-        this.locationId = this.locationId;
+        this.locationId = locationId;
 
     }
 
@@ -52,11 +52,11 @@ public class Department {
         this.managerId = managerId;
     }
 
-    public int getLocationId() {
+    public String getLocationId() {
         return locationId;
     }
 
-    public void setLocationId(int locationId) {
+    public void setLocationId(String locationId) {
         this.locationId = locationId;
     }
     

@@ -13,18 +13,19 @@ import java.util.ArrayList;
 import java.util.List;
 import models.Department;
 import models.Location;
+
 /**
  *
  * @author Insane
  */
-public class DepartmentDAO implements IDepartmentDAO{
-    
+public class DepartmentDAO implements IDepartmentDAO {
+
     private Connection connection;
+    boolean result = false;
 
     public DepartmentDAO(Connection connection) {
         this.connection = connection;
     }
-    
 
     @Override
     public List<Department> getAll() {
@@ -34,17 +35,17 @@ public class DepartmentDAO implements IDepartmentDAO{
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                Department d = new Department(resultSet.getInt(1), resultSet.getString(2), resultSet.getInt(3), resultSet.getString(4)); 
+                Department d = new Department(resultSet.getInt(1), resultSet.getString(2), resultSet.getInt(3), resultSet.getString(4));
                 d.setId(resultSet.getInt(1));
                 d.setName(resultSet.getString(2));
                 d.setManagerId(resultSet.getInt(3));
-                d.setLocationId(resultSet.getInt(4));
+                d.setLocationId(resultSet.getString(4));
                 listDepartment.add(d);
             }
-       } catch (Exception e) {
-           e.getStackTrace();
+        } catch (Exception e) {
+            e.getStackTrace();
         }
-        return listDepartment; 
+        return listDepartment;
     }
 
     @Override
@@ -56,7 +57,7 @@ public class DepartmentDAO implements IDepartmentDAO{
             preparedStatement.setInt(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {//memeriksa apakah 
-                Department d = new Department(resultSet.getInt(1), resultSet.getString(2), resultSet.getInt(3), resultSet.getString(4)); 
+                Department d = new Department(resultSet.getInt(1), resultSet.getString(2), resultSet.getInt(3), resultSet.getString(4));
                 //r.setId(resultSet.getInt(1));
                 //r.setName(resultSet.getString(2));
                 listDepartment.add(d);
@@ -73,11 +74,11 @@ public class DepartmentDAO implements IDepartmentDAO{
         String query = "SELECT * FROM DEPARTMENTS WHERE DEPARTMENT_ID LIKE(?) OR DEPARTMENT_NAME (?) ORDER BY DEPARTMENT_ID ASC";
         try {
             PreparedStatement preparedStatement = connection.prepareCall(query);
-            preparedStatement.setString(1,"%" + key + "%");
-            preparedStatement.setString(2,"%" + key + "%");
+            preparedStatement.setString(1, "%" + key + "%");
+            preparedStatement.setString(2, "%" + key + "%");
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                Department d = new Department(resultSet.getInt(1), resultSet.getString(2), resultSet.getInt(3), resultSet.getString(4)); 
+                Department d = new Department(resultSet.getInt(1), resultSet.getString(2), resultSet.getInt(3), resultSet.getString(4));
                 listDepartment.add(d);
             }
         } catch (Exception e) {
@@ -89,19 +90,17 @@ public class DepartmentDAO implements IDepartmentDAO{
 
     @Override
     public boolean insert(Department d) {
-        boolean result = false;
+
         String query = "INSERT INTO DEPARTMENTS(DEPARTMENT_ID, DEPARTMENT_NAME, MANAGER_ID, LOCATION_ID) VALUES (?, ?, ?, ?)";
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setInt(1, l.get());
-            preparedStatement.setString(2, l.getStradd() );
-            preparedStatement.setInt(3, l.getPoscode());
-            preparedStatement.setString(4, l.getCity() );
-            preparedStatement.setString(5, l.getStaprov() ); 
-            preparedStatement.setString(6, l.getCounid() ); 
+            preparedStatement.setInt(1, d.getId());
+            preparedStatement.setString(2, d.getName());
+            preparedStatement.setInt(3, d.getManagerId());
+            preparedStatement.setString(4, d.getLocationId());
             preparedStatement.executeQuery();
             result = true;
- 
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -110,12 +109,36 @@ public class DepartmentDAO implements IDepartmentDAO{
 
     @Override
     public boolean update(Department d) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
+        String query = "UPDATE DEPARTMENTS SET DEPARTMENT_NAME = ?, MANAGER_ID = ?, LOCATION_ID = ? WHERE DEPARTMENT_ID=?";
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, d.getName());
+            preparedStatement.setInt(2, d.getManagerId());
+            preparedStatement.setString(3, d.getLocationId());
+            preparedStatement.setInt(4, d.getId());
+            preparedStatement.executeQuery();
+            result = true;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return result;
     }
 
     @Override
     public boolean delete(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
+        String query = "DELETE FROM DEPARTMENTS WHERE DEPARTMENT_ID = ?";
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1, id);
+            preparedStatement.execute();
+            result = true;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return result;
     }
-    
+
 }
