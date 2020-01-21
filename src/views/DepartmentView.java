@@ -47,7 +47,7 @@ public class DepartmentView extends javax.swing.JFrame {
             cbxManagerId.addItem(String.valueOf(e.getManagerID()));
         }
         for (Location l : ilc.getAll()) {
-            cbxLocationId.addItem(String.valueOf(l.getLocid()));
+            cbxLocationId.addItem(String.valueOf(l.getId()));
         }
 
         refresh();

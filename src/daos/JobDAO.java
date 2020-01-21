@@ -68,14 +68,11 @@ public class JobDAO implements IJobDAO {
     @Override
     public List<Job> search(String key) {
         
-        List<Job> jobs = new ArrayList<Job>();
+        List<Job> jobs = new ArrayList<>();
         String query = "SELECT * FROM JOBS WHERE job_id LIKE ? OR job_title LIKE ? OR min_salary LIKE ? OR max_salary LIKE ?";
         try {
             key="%"+key+"%";
             PreparedStatement preparedStatement = connection.prepareStatement(query);
-//            for (int i = 1; i <= 4; i++) {
-//                preparedStatement.setString(i, key);
-//            }
             preparedStatement.setString(1, key);
             preparedStatement.setString(2, key);
             preparedStatement.setString(3, key);

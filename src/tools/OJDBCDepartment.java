@@ -42,7 +42,7 @@ public class OJDBCDepartment {
     }
 
     public void search() {
-        for (Department d : iddao.search("Admin")) {
+        for (Department d : iddao.search("1")) {
                 System.out.println(d.getId());
             System.out.println(d.getName());
             System.out.println(d.getManagerId());

@@ -68,22 +68,22 @@ public class DepartmentDAO implements IDepartmentDAO {
 
     @Override
     public List<Department> search(String key) {
-        List<Department> listDepartment = new ArrayList<>();
+        List<Department> departments = new ArrayList<>();
         String query = "SELECT * FROM DEPARTMENTS WHERE DEPARTMENT_ID LIKE ? OR DEPARTMENT_NAME LIKE ?";
         try {
-            key = "'%"+key+"%'";
+            key = "%"+key+"%";
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, key);
              preparedStatement.setString(2, key);
             ResultSet resultSet = preparedStatement.executeQuery();
-            while (resultSet.next()) {//memeriksa apakah 
+            while (resultSet.next()) {
                 Department d = new Department(resultSet.getInt(1), resultSet.getString(2), resultSet.getInt(3), resultSet.getInt(4));
-                listDepartment.add(d);
+                departments.add(d);
             }
         } catch (SQLException e) {
             e.getStackTrace();
         }
-        return listDepartment;
+        return departments;
     }
 
     @Override
