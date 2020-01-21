@@ -15,8 +15,8 @@ import models.Department;
 public interface IDepartmentController {
     
     public List<Department> getAll();
-    public List<Department> getById(String Id);
-    public List<Department> search(String Key);
+    public List<Department> getById(String id);
+    public List<Department> search(String key);
     public String insert(String id, String name, String managerId, String locationId);
     public String update(String id, String name, String managerId, String locationId);
     public String delete(String id);

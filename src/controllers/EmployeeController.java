@@ -6,7 +6,6 @@
 package controllers;
 
 import daos.EmployeeDAO;
-import daos.RegionDAO;
 import icontrollers.IEmployeeController;
 import idaos.IEmployeeDAO;
 import java.sql.Connection;

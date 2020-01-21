@@ -42,11 +42,11 @@ public class OJDBCDepartment {
     }
 
     public void search() {
-        for (Department department : iddao.search("10")) {
-            System.out.println(department.getId());
-            System.out.println(department.getName());
-            System.out.println(department.getManagerId());
-            System.out.println(department.getLocationId());
+        for (Department d : iddao.search("Admin")) {
+                System.out.println(d.getId());
+            System.out.println(d.getName());
+            System.out.println(d.getManagerId());
+            System.out.println(d.getLocationId());
         }
     }
 
@@ -64,9 +64,9 @@ public class OJDBCDepartment {
 //        testing.getAll();
 //        testing.insert();
 //        testing.getById();
-//        testing.search(); //eror
+        testing.search(); //eror
 //        testing.delete(); 
-        testing.update(); 
+//        testing.update(); 
     }
     
 }
