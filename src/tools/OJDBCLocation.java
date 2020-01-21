@@ -13,7 +13,7 @@ import models.Location;
  *
  * @author aqira
  */
-public class ManualTestLocation {
+public class OJDBCLocation {
 
     DBConnection connection = new DBConnection();
     ILocationDAO ildao = new LocationDAO(connection.getConnection());
@@ -67,12 +67,12 @@ public class ManualTestLocation {
     }
 
     public static void main(String[] args) {
-        ManualTestLocation testing = new ManualTestLocation();
+        OJDBCLocation testing = new OJDBCLocation();
 
-//        testing.getAll(); //pass
+        testing.getAll(); //pass
 //        testing.insert(); //pass
 //        testing.getById(); //pass
-        testing.search(); //notyet
+//        testing.search(); //notyet
 //        testing.delete(); //pass
 //        testing.update(); //pass
     }

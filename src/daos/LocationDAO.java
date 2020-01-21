@@ -29,7 +29,7 @@ public class LocationDAO implements ILocationDAO {
     public List<Location> getAll() {
 
         List<Location> listLocation = new ArrayList<Location>();
-        String query = "SELECT * FROM LOCATIONS";
+        String query = "SELECT * FROM LOCATIONS ORDER BY location_id";
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -91,8 +91,8 @@ public class LocationDAO implements ILocationDAO {
             preparedStatement.setString(6, key);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                Location l = new Location(resultSet.getInt(1), resultSet.getString(2), resultSet.getString(3), resultSet.getString(4), resultSet.getString(5), resultSet.getString(6));
-                
+                Location l = new Location(resultSet.getInt(1), resultSet.getString(2), resultSet.getString(3),
+                        resultSet.getString(4), resultSet.getString(5), resultSet.getString(6));
 
                 listSearch.add(l);
             }
