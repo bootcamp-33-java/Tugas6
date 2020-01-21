@@ -17,7 +17,7 @@ import models.Employee;
  *
  * @author Bagus Widyantoro Putro
  */
-public class EmployeeDAO implements IEmployeeDAO{
+public class EmployeeDAO implements IEmployeeDAO {
 
     private Connection connection;
 
@@ -28,7 +28,9 @@ public class EmployeeDAO implements IEmployeeDAO{
     @Override
     public List<Employee> getAll() {
         List<Employee> listEmployees = new ArrayList<>();
-        String query = "SELECT * FROM EMPLOYEES ORDER BY EMPLOYEE_ID";
+        String query = "SELECT EMPLOYEE_ID, FIRST_NAME, LAST_NAME, EMAIL, PHONE_NUMBER,"
+                + "TO_CHAR(HIRE_DATE, 'MM/DD/YYYY'), JOB_ID, SALARY, COMMISSION_PCT, MANAGER_ID"
+                + ", DEPARTMENT_ID FROM EMPLOYEES ORDER BY EMPLOYEE_ID";
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -41,33 +43,33 @@ public class EmployeeDAO implements IEmployeeDAO{
             }
 
         } catch (Exception e) {
-            e.getStackTrace();
+            e.printStackTrace();
         }
 
         return listEmployees;
     }
 
     @Override
-    public boolean insert(Employee j) {
+    public boolean insert(Employee employee) {
         boolean result = false;
-        String query = "INSERT INTO EMPLOYEES VALUES (?,?,?,?,?,TO_DATE(?, 'mm/dd/yyyy'),?,?,?,?,?)";
+        String query = "INSERT INTO EMPLOYEES VALUES (?,?,?,?,?,TO_CHAR(?, 'MM/DD/YYYY'),?,?,?,?,?)";
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setInt(1, j.getId());
-            preparedStatement.setString(2, j.getFirstName());
-            preparedStatement.setString(3, j.getLastName());
-            preparedStatement.setString(4, j.getEmail());
-            preparedStatement.setString(5, j.getPhoneNumber());
+            preparedStatement.setInt(1, employee.getId());
+            preparedStatement.setString(2, employee.getFirstName());
+            preparedStatement.setString(3, employee.getLastName());
+            preparedStatement.setString(4, employee.getEmail());
+            preparedStatement.setString(5, employee.getPhoneNumber());
             //preparedStatement.setString(5, "");
-            preparedStatement.setString(6, j.getHireDate());
-            preparedStatement.setString(7, j.getJobID());
-            preparedStatement.setInt(8, j.getSalary());
-            preparedStatement.setFloat(9, j.getCommisionPCT());
-            preparedStatement.setInt(10, j.getManagerID());
-            preparedStatement.setInt(11, j.getDepartmentID());
+            preparedStatement.setString(6, employee.getHireDate());
+            preparedStatement.setString(7, employee.getJobID());
+            preparedStatement.setInt(8, employee.getSalary());
+            preparedStatement.setFloat(9, employee.getCommisionPCT());
+            preparedStatement.setInt(10, employee.getManagerID());
+            preparedStatement.setInt(11, employee.getDepartmentID());
             preparedStatement.executeQuery();
             result = true;
-            
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -91,7 +93,7 @@ public class EmployeeDAO implements IEmployeeDAO{
             }
 
         } catch (Exception e) {
-            e.getStackTrace();
+            e.printStackTrace();
         }
 
         return listEmployees;
@@ -112,15 +114,15 @@ public class EmployeeDAO implements IEmployeeDAO{
             }
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                Employee r = new Employee(resultSet.getInt(1), resultSet.getString(2),
+                Employee e = new Employee(resultSet.getInt(1), resultSet.getString(2),
                         resultSet.getString(3), resultSet.getString(4), resultSet.getString(5),
                         resultSet.getString(6), resultSet.getString(7), resultSet.getInt(8),
                         resultSet.getFloat(9), resultSet.getInt(10), resultSet.getInt(11));
-                listEmployees.add(r);
+                listEmployees.add(e);
             }
 
         } catch (Exception e) {
-            e.getStackTrace();
+            e.printStackTrace();
         }
 
         return listEmployees;
@@ -166,5 +168,41 @@ public class EmployeeDAO implements IEmployeeDAO{
         }
         return result;
     }
+    @Override
+    public List<Employee> getJobId() {
+        List<Employee> listEmployees = new ArrayList<>();
+        String query = "SELECT JOB_ID FROM JOBS";
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                Employee r = new Employee(resultSet.getString(1));
+                listEmployees.add(r);
+            }
 
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return listEmployees;
+    }
+    
+    @Override
+    public List<Employee> getDepartmentId() {
+        List<Employee> listEmployees = new ArrayList<>();
+        String query = "SELECT department_id FROM departments";
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                Employee r = new Employee(resultSet.getInt(1));
+                listEmployees.add(r);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return listEmployees;
+    }
 }

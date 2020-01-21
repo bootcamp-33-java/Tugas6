@@ -35,18 +35,14 @@ public class OJDBCEmployees {
         }
     }
 
-    public void getById() {
-        for (Employee employee : irdao.getById(206)) {
-            System.out.println(employee.getId());
-            System.out.println(employee.getFirstName());
-            System.out.println(employee.getLastName());
-            System.out.println(employee.getEmail());
-            System.out.println(employee.getPhoneNumber());
-            System.out.println(employee.getHireDate());
+    public void getJobId() {
+        for (Employee employee : irdao.getJobId()) {
             System.out.println(employee.getJobID());
-            System.out.println(employee.getSalary());
-            System.out.println(employee.getCommisionPCT());
-            System.out.println(employee.getManagerID());
+        }
+    }
+    
+    public void getDepartmentId() {
+        for (Employee employee : irdao.getDepartmentId()) {
             System.out.println(employee.getDepartmentID());
         }
     }
@@ -87,8 +83,10 @@ public class OJDBCEmployees {
 //       testing.getAll();
 //        testing.insert();
 //        testing.getById();
-        testing.search();
+//        testing.search();
 //        testing.delete();
 //       testing.update();
+//        testing.getJobId();
+        testing.getDepartmentId();
     }
 }

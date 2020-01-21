@@ -28,6 +28,14 @@ public class Employee {
         this.commisionPCT = commisionPCT;
     }
 
+    public Employee(String jobID) {
+        this.jobID = jobID;
+    }
+    
+    public Employee(int departmentID) {
+        this.departmentID = departmentID;
+    }
+    
     public Employee() {
     }
 
