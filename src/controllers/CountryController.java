@@ -14,7 +14,7 @@ import models.Country;
 
 /**
  *
- * @author FIKRI
+ * @author Galih Satriya
  */
 public class CountryController implements ICountryController{
      private ICountryDAO icdao;
@@ -28,17 +28,17 @@ public class CountryController implements ICountryController{
         return icdao.getAll();
     }
     @Override
-    public List<Country> getById(String c_id){
-    return icdao.getById(c_id);
+    public List<Country> getById(String id){
+    return icdao.getById(id);
     }
     @Override
     public List<Country> search(String key) {
     return icdao.search(key);
     }
     @Override
-    public String insert(String c_id, String name, String r_id) {
+    public String insert(String id, String name, String regionId) {
     String result ="";
-    Country country = new Country(c_id, name,Integer.parseInt(r_id));
+    Country country = new Country(id, name,Integer.parseInt(regionId));
     if (icdao.insert(country)) {
         result= "Data Berhasil disimpan";
     } else {
@@ -47,9 +47,9 @@ public class CountryController implements ICountryController{
     return result;
     }
     @Override
-    public String update(String c_id, String name, String r_id) {
+    public String update(String id, String name, String regionId) {
     String result ="";
-    Country country= new Country(c_id, name ,Integer.parseInt(r_id));
+    Country country= new Country(id, name ,Integer.parseInt(regionId));
     if (icdao.update(country)) {
         result= "Data Berhasil diupdate";
     } else {
@@ -58,9 +58,9 @@ public class CountryController implements ICountryController{
     return result;
     }
     @Override
-    public String delete(String c_id) {
+    public String delete(String id) {
     String result ="";
-    if (icdao.delete(c_id)) {
+    if (icdao.delete(id)) {
         result= "Data Berhasil dihapus";
     } else {
         result = "Maaf data gagal disimpan";

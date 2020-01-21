@@ -15,7 +15,7 @@ import tools.DBConnection;
 
 /**
  *
- * @author FIKRI-PC
+ * @author Galih Satriya
  */
 public class JUnitTestCountry {
     DBConnection connection = new DBConnection();
@@ -39,7 +39,7 @@ public class JUnitTestCountry {
     public void testInsert(){
     irc.insert("111","NamaSaya","2");
     List<Country> m = irc.getById("111");
-    Assert.assertEquals("111", m.get(0).getCid());
+    Assert.assertEquals("111", m.get(0).getid());
     Assert.assertEquals("NamaSaya", m.get(0).getName());
     Assert.assertEquals("2", m.get(0).getRid());
     
@@ -47,14 +47,14 @@ public class JUnitTestCountry {
     public void testUpdate(){
     irc.update("111","NamaSayaIni","2");
     List<Country> m = irc.getById("111");
-    Assert.assertEquals("111", m.get(0).getCid());
+    Assert.assertEquals("111", m.get(0).getid());
     Assert.assertEquals("NamaSayaIni", m.get(0).getName());
     Assert.assertEquals("2", m.get(0).getRid());
     }
     public void testDelete(){
     irc.delete("111");
     List<Country> m = irc.getById("111");
-    Assert.assertEquals("111", m.get(0).getCid());
+    Assert.assertEquals("111", m.get(0).getid());
     }
     
 }

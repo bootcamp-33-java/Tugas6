@@ -7,42 +7,42 @@ package models;
 
 /**
  *
- * @author FIKRI-PC
+ * @author Galih Satriya
  */
 public class Country {
-     private String c_id;
+     private String id;
      private String name;
-     private int r_id;
+     private int regionId;
 
     public Country() {
     }
 
-    public Country(String c_id, String name, int r_id ) {
-        this.c_id = c_id;
+    public Country(String id, String name, int regionId ) {
+        this.id = id;
         this.name = name;
-        this.r_id = r_id;
+        this.regionId = regionId;
     }
 
-    public String getCid() {
-        return c_id;
+    public String getid() {
+        return id;
     }
 
     public String getName() {
         return name;
     }
     public int getRid() {
-        return r_id;
+        return regionId;
     }
 
-    public void setCid(String c_id) {
-        this.c_id = c_id;
+    public void setCid(String id) {
+        this.id = id;
     }
 
     public void setName(String name) {
         this.name = name;
     }
 
-    public void setRid(int r_id) {
-        this.r_id = r_id;
+    public void setRid(int regionId) {
+        this.regionId = regionId;
     }
 }
