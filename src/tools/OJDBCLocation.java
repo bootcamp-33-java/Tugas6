@@ -47,7 +47,7 @@ public class OJDBCLocation {
     }
 
     public void search() {
-        for (Location location : ildao.search("Jak")) {
+        for (Location location : ildao.search("null")) {
             System.out.print(location.getId() + "  | ");
             System.out.print(location.getAddress() + " |  ");
             System.out.print(location.getPostalCode() + " |  ");
@@ -69,10 +69,10 @@ public class OJDBCLocation {
     public static void main(String[] args) {
         OJDBCLocation testing = new OJDBCLocation();
 
-        testing.getAll(); //pass
+//        testing.getAll(); //pass
 //        testing.insert(); //pass
 //        testing.getById(); //pass
-//        testing.search(); //notyet
+        testing.search(); //notyet
 //        testing.delete(); //pass
 //        testing.update(); //pass
     }

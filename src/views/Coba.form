@@ -62,7 +62,7 @@
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="32767" attributes="0"/>
               <Component id="jInternalFrame1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="88" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="253" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -82,32 +82,27 @@
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
-                          <Component id="txt_input" min="-2" pref="216" max="-2" attributes="0"/>
+                          <Component id="txtInput" min="-2" pref="216" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="btn_Search" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnSearch" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
-                          <Component id="Btn_getById" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnGetById" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
                           <Component id="jScrollPane2" alignment="0" max="32767" attributes="0"/>
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Component id="jLabel7" min="-2" pref="91" max="-2" attributes="0"/>
-                                  </Group>
+                                  <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace min="-2" pref="110" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="txt_LocationID" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="txt_StreetAD" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="txt_PostalCD" alignment="0" min="-2" pref="162" max="-2" attributes="0"/>
+                                          <Component id="txtLocationId" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="txtStreetAddress" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="txtPostalCode" alignment="0" min="-2" pref="162" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace min="-2" pref="92" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
@@ -117,9 +112,9 @@
                                       </Group>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="txt_City" pref="164" max="32767" attributes="0"/>
-                                          <Component id="txt_StatePro" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="txt_CountryID" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="txtCity" pref="164" max="32767" attributes="0"/>
+                                          <Component id="txtStateProvince" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="txtCountryId" alignment="0" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
@@ -134,37 +129,42 @@
                               <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <Component id="Btn_getAll" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnGetAll" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="20" max="32767" attributes="0"/>
+              </Group>
+              <Group type="102" alignment="1" attributes="0">
+                  <EmptySpace max="32767" attributes="0"/>
+                  <Component id="jLabel7" min="-2" pref="91" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="309" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
                   <Component id="jLabel7" min="-2" pref="40" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="txt_LocationID" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtLocationId" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="txt_City" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtCity" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="txt_StreetAD" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtStreetAddress" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="txt_StatePro" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtStateProvince" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="txt_PostalCD" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtPostalCode" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="txt_CountryID" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtCountryId" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -174,30 +174,30 @@
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="txt_input" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtInput" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel9" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="btn_Search" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="Btn_getById" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnSearch" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnGetById" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="Btn_getAll" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnGetAll" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
-                  <Component id="jScrollPane2" min="-2" pref="362" max="-2" attributes="0"/>
-                  <EmptySpace pref="305" max="32767" attributes="0"/>
+                  <Component id="jScrollPane2" min="-2" pref="136" max="-2" attributes="0"/>
+                  <EmptySpace pref="26" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JTextField" name="txt_City">
+        <Component class="javax.swing.JTextField" name="txtCity">
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txt_CityActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtCityActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JTextField" name="txt_StatePro">
+        <Component class="javax.swing.JTextField" name="txtStateProvince">
         </Component>
-        <Component class="javax.swing.JTextField" name="txt_CountryID">
+        <Component class="javax.swing.JTextField" name="txtCountryId">
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel7">
           <Properties>
@@ -231,17 +231,17 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_DeleteActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JTextField" name="txt_input">
+        <Component class="javax.swing.JTextField" name="txtInput">
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txt_inputActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtInputActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="btn_Search">
+        <Component class="javax.swing.JButton" name="btnSearch">
           <Properties>
             <Property name="text" type="java.lang.String" value="Search"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_SearchActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSearchActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel1">
@@ -274,9 +274,9 @@
             <Property name="text" type="java.lang.String" value="Country ID"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="txt_LocationID">
+        <Component class="javax.swing.JTextField" name="txtLocationId">
         </Component>
-        <Component class="javax.swing.JTextField" name="txt_StreetAD">
+        <Component class="javax.swing.JTextField" name="txtStreetAddress">
         </Component>
         <Container class="javax.swing.JScrollPane" name="jScrollPane2">
           <AuxValues>
@@ -285,7 +285,7 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
-            <Component class="javax.swing.JTable" name="tb_Location">
+            <Component class="javax.swing.JTable" name="tblLocation">
               <Properties>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                   <Table columnCount="7" rowCount="0">
@@ -342,28 +342,28 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="ancestorAdded" listener="javax.swing.event.AncestorListener" parameters="javax.swing.event.AncestorEvent" handler="tb_LocationAncestorAdded"/>
-                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tb_LocationMouseClicked"/>
+                <EventHandler event="ancestorAdded" listener="javax.swing.event.AncestorListener" parameters="javax.swing.event.AncestorEvent" handler="tblLocationAncestorAdded"/>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tblLocationMouseClicked"/>
               </Events>
             </Component>
           </SubComponents>
         </Container>
-        <Component class="javax.swing.JTextField" name="txt_PostalCD">
+        <Component class="javax.swing.JTextField" name="txtPostalCode">
         </Component>
-        <Component class="javax.swing.JButton" name="Btn_getAll">
+        <Component class="javax.swing.JButton" name="btnGetAll">
           <Properties>
             <Property name="text" type="java.lang.String" value="Refresh Table"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Btn_getAllActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnGetAllActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="Btn_getById">
+        <Component class="javax.swing.JButton" name="btnGetById">
           <Properties>
             <Property name="text" type="java.lang.String" value="Sesuai dengan ID"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Btn_getByIdActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnGetByIdActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel8">

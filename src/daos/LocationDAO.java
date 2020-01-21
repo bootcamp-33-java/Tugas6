@@ -80,8 +80,9 @@ public class LocationDAO implements ILocationDAO {
     @Override
     public List<Location> search(String key) {
         List<Location> listSearch = new ArrayList();
-        String query = "SELECT * FROM locations WHERE location_id LIKE '%?%' OR street_address LIKE '%?%' OR postal_code LIKE '%?%' OR city LIKE '%?%' OR state_province LIKE '%?%' OR country_id LIKE '%?%'";
+        String query = "SELECT * FROM locations WHERE location_id LIKE ? OR street_address LIKE ? OR postal_code LIKE ? OR city LIKE ? OR state_province LIKE ? OR country_id LIKE ?";
         try {
+            key = "%" + key + "%";
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, key);
             preparedStatement.setString(2, key);
@@ -91,8 +92,7 @@ public class LocationDAO implements ILocationDAO {
             preparedStatement.setString(6, key);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                Location l = new Location(resultSet.getInt(1), resultSet.getString(2), resultSet.getString(3),
-                        resultSet.getString(4), resultSet.getString(5), resultSet.getString(6));
+                Location l = new Location(resultSet.getInt(1), resultSet.getString(2), resultSet.getString(3), resultSet.getString(4), resultSet.getString(5), resultSet.getString(6));
 
                 listSearch.add(l);
             }
