@@ -42,7 +42,7 @@ public class OJDBCDepartment {
     }
 
     public void search() {
-        for (Department department : iddao.search("10")) {
+        for (Department department : iddao.search("270")) {
             System.out.println(department.getId());
             System.out.println(department.getName());
             System.out.println(department.getManagerId());
@@ -51,7 +51,7 @@ public class OJDBCDepartment {
     }
 
     public void update() {
-        System.out.println(iddao.update("260" , "Servant", "127", "1700"));
+        System.out.println(iddao.update("270" , "Servant", "127", "1700"));
 
     }
 
@@ -64,9 +64,9 @@ public class OJDBCDepartment {
 //        testing.getAll();
 //        testing.insert();
 //        testing.getById();
-//        testing.search(); //eror
+        testing.search(); //eror
 //        testing.delete(); 
-        testing.update(); 
+//        testing.update(); 
     }
     
 }

@@ -16,6 +16,7 @@ public class Department {
     private int managerId;
     private int locationId;
     
+    
     public Department() {
 
     }

@@ -73,9 +73,9 @@ public class DepartmentDAO implements IDepartmentDAO {
         List<Department> listDepartment = new ArrayList<>();
         String query = "SELECT * FROM DEPARTMENTS WHERE DEPARTMENT_ID LIKE(?) OR DEPARTMENT_NAME (?) ORDER BY DEPARTMENT_ID ASC";
         try {
-            PreparedStatement preparedStatement = connection.prepareCall(query);
-            preparedStatement.setString(1, "%" + key + "%");
-            preparedStatement.setString(2, "%" + key + "%");
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, key);
+            preparedStatement.setString(2, key);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 Department d = new Department(resultSet.getInt(1), resultSet.getString(2), resultSet.getInt(3), resultSet.getInt(4));
