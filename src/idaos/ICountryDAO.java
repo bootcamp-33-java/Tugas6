@@ -13,7 +13,8 @@ import models.Country;
  * @author Galih Satriya
  */
 public interface ICountryDAO {
-     public List<Country> getAll();
+
+    public List<Country> getAll();
 
     public List<Country> getById(String id);
 
