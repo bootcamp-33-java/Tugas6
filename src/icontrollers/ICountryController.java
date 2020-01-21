@@ -13,6 +13,7 @@ import models.Country;
  * @author Galih Satriya
  */
 public interface ICountryController {
+
     public List<Country> getAll();
     public List<Country> getById(String id);
     public List<Country> search(String Key);

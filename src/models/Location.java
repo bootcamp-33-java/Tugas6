@@ -7,76 +7,76 @@ package models;
 
 /**
  *
- * @author Fachrurrozy
+ * @author aqira
  */
 public class Location {
-    private int locid;
-    private String stradd;
-    private int poscode;
+
+    private int id;
+    private String address;
+    private String postalCode;
     private String city;
-    private String staprov;
-    private String counid;
-    
-    public Location(){
-        
+    private String stateProvince;
+    private String countryId;
+
+    public Location() {
     }
-    
-    
-    public Location(int locid, String stradd, int poscode, String city, String staprov, String counid){
-        this.locid = locid;
-        this.stradd = stradd;
-        this.poscode = poscode;
+
+    public Location(int id, String address, String postalCode, String city, String stateProvince, String countryId) {
+        this.id = id;
+        this.address = address;
+        this.postalCode = postalCode;
         this.city = city;
-        this.staprov = staprov;
-        this.counid= counid;
+        this.stateProvince = stateProvince;
+        this.countryId = countryId;
+
     }
-    
-    public int getLocid(){
-        return locid;
+
+    public int getId() {
+        return id;
     }
-    
-    public String getStradd(){
-        return stradd;
+
+    public String getAddress() {
+        return address;
     }
-    
-    public int getPoscode(){
-        return poscode;
+
+    public String getPostalCode() {
+        return postalCode;
     }
-    
-    public String getCity(){
+
+    public String getCity() {
         return city;
     }
-    
-    public String getStaprov(){
-        return staprov;
+
+    public String getStateProvince() {
+        return stateProvince;
     }
-    
-    public String getCounid(){
-        return counid;
+
+    public String getCountryId() {
+        return countryId;
     }
-    
-    public void setLocid(int locid){
-        this.locid = locid;
+
+    public void setId(int id) {
+        this.id = id;
     }
-    
-    public void setStradd(String stradd){
-        this.stradd = stradd;
+
+    public void setAddress(String address) {
+        this.address = address;
     }
-    
-    public void setPoscode(int poscode){
-        this.poscode = poscode;
+
+    public void setPostalCode(String postalCode) {
+        this.postalCode = postalCode;
     }
-    
-    public void setCity(String city){
+
+    public void setCity(String city) {
         this.city = city;
     }
-    
-    public void setStaprov(String staprov){
-        this.staprov = staprov;
+
+    public void setStateProvince(String stateProvince) {
+        this.stateProvince = stateProvince;
     }
-    
-    public void setCounid(String counid){
-        this.counid = counid;
+
+    public void setCountryId(String countryId) {
+        this.countryId = countryId;
     }
 
 }
