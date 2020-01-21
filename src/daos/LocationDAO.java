@@ -80,7 +80,7 @@ public class LocationDAO implements ILocationDAO {
     @Override
     public List<Location> search(String key) {
         List<Location> listSearch = new ArrayList();
-        String query = "SELECT * FROM locations WHERE location_id LIKE ? OR street_address LIKE ?";
+        String query = "SELECT * FROM locations WHERE location_id LIKE ? OR street_address LIKE != LOWER (?) ?";
         try {
             key = "%"+key+"%";
             PreparedStatement preparedStatement = connection.prepareStatement(query);

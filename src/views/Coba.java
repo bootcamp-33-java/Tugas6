@@ -78,6 +78,10 @@ DBConnection connection = new DBConnection();
         jScrollPane2 = new javax.swing.JScrollPane();
         tb_Location = new javax.swing.JTable();
         txt_PostalCD = new javax.swing.JTextField();
+        Btn_getAll = new javax.swing.JButton();
+        Btn_getById = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -86,6 +90,12 @@ DBConnection connection = new DBConnection();
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jInternalFrame1.setVisible(true);
+
+        txt_City.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_CityActionPerformed(evt);
+            }
+        });
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel7.setText("Location");
@@ -108,6 +118,12 @@ DBConnection connection = new DBConnection();
         btn_Delete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_DeleteActionPerformed(evt);
+            }
+        });
+
+        txt_search.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_searchActionPerformed(evt);
             }
         });
 
@@ -149,56 +165,77 @@ DBConnection connection = new DBConnection();
         });
         jScrollPane2.setViewportView(tb_Location);
 
+        Btn_getAll.setText("Refresh Table");
+        Btn_getAll.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Btn_getAllActionPerformed(evt);
+            }
+        });
+
+        Btn_getById.setText("Sesuai dengan ID");
+        Btn_getById.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Btn_getByIdActionPerformed(evt);
+            }
+        });
+
+        jLabel8.setText("Pencarian Sebagai :");
+
+        jLabel9.setText("Input :");
+
         javax.swing.GroupLayout jInternalFrame1Layout = new javax.swing.GroupLayout(jInternalFrame1.getContentPane());
         jInternalFrame1.getContentPane().setLayout(jInternalFrame1Layout);
         jInternalFrame1Layout.setHorizontalGroup(
             jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jInternalFrame1Layout.createSequentialGroup()
-                .addGap(45, 45, 45)
-                .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane2)
+                .addGap(55, 55, 55)
+                .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jInternalFrame1Layout.createSequentialGroup()
-                        .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3)
-                            .addComponent(btn_Insert))
-                        .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel9)
+                        .addGap(55, 55, 55)
+                        .addComponent(txt_search, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel8)
+                        .addGap(18, 18, 18)
+                        .addComponent(btn_Search)
+                        .addGap(32, 32, 32)
+                        .addComponent(Btn_getById))
+                    .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jScrollPane2)
+                        .addGroup(jInternalFrame1Layout.createSequentialGroup()
                             .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(jInternalFrame1Layout.createSequentialGroup()
-                                    .addGap(22, 22, 22)
+                                    .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel1)
+                                        .addComponent(jLabel2)
+                                        .addComponent(jLabel3))
+                                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jInternalFrame1Layout.createSequentialGroup()
+                                    .addGap(110, 110, 110)
                                     .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                         .addComponent(txt_LocationID)
                                         .addComponent(txt_StreetAD)
                                         .addComponent(txt_PostalCD, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGap(92, 92, 92)
+                                    .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel5)
+                                        .addComponent(jLabel6)
+                                        .addComponent(jLabel4))
+                                    .addGap(18, 18, 18)
                                     .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addGroup(jInternalFrame1Layout.createSequentialGroup()
-                                            .addComponent(jLabel4)
-                                            .addGap(78, 78, 78)
-                                            .addComponent(txt_City, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(jInternalFrame1Layout.createSequentialGroup()
-                                            .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(jLabel5)
-                                                .addComponent(jLabel6))
-                                            .addGap(18, 18, 18)
-                                            .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(txt_StatePro)
-                                                .addComponent(txt_CountryID, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jInternalFrame1Layout.createSequentialGroup()
+                                        .addComponent(txt_City, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE)
+                                        .addComponent(txt_StatePro)
+                                        .addComponent(txt_CountryID)))
+                                .addGroup(jInternalFrame1Layout.createSequentialGroup()
+                                    .addGap(77, 77, 77)
+                                    .addComponent(btn_Insert)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(242, 242, 242)))
-                            .addGroup(jInternalFrame1Layout.createSequentialGroup()
-                                .addGap(38, 38, 38)
-                                .addComponent(btn_Update)
-                                .addGap(57, 57, 57)
-                                .addComponent(btn_Delete)
-                                .addGap(107, 107, 107)
-                                .addComponent(txt_search, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btn_Search)))))
-                .addContainerGap(49, Short.MAX_VALUE))
+                                    .addComponent(btn_Update)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(btn_Delete)))
+                            .addGap(35, 35, 35)))
+                    .addComponent(Btn_getAll))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
         jInternalFrame1Layout.setVerticalGroup(
             jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -227,12 +264,19 @@ DBConnection connection = new DBConnection();
                 .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_Insert)
                     .addComponent(btn_Update)
-                    .addComponent(btn_Delete)
+                    .addComponent(btn_Delete))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txt_search, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_Search))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                    .addComponent(jLabel9)
+                    .addComponent(jLabel8)
+                    .addComponent(btn_Search)
+                    .addComponent(Btn_getById))
+                .addGap(18, 18, 18)
+                .addComponent(Btn_getAll)
+                .addGap(4, 4, 4)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(297, Short.MAX_VALUE))
         );
 
         jMenu1.setText("File");
@@ -266,7 +310,7 @@ DBConnection connection = new DBConnection();
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jInternalFrame1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(25, 25, 25))
+                .addGap(88, 88, 88))
         );
 
         pack();
@@ -279,39 +323,22 @@ DBConnection connection = new DBConnection();
 //        l.show();
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
-    private void btn_InsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_InsertActionPerformed
-        // TODO add your handling code here:
-        ilc.insert(txt_LocationID.getText(), txt_StreetAD.getText(), txt_PostalCD.getText(), txt_City.getText(),
-                txt_StatePro.getText(), txt_CountryID.getText());
+    private void Btn_getAllActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_getAllActionPerformed
         refresh();
-    }//GEN-LAST:event_btn_InsertActionPerformed
+    }//GEN-LAST:event_Btn_getAllActionPerformed
 
     private void tb_LocationAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_tb_LocationAncestorAdded
         // TODO add your handling code here:
-
     }//GEN-LAST:event_tb_LocationAncestorAdded
-
-    private void btn_UpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_UpdateActionPerformed
-        // TODO add your handling code here:
-        ilc.update(txt_LocationID.getText(), txt_StreetAD.getText(), txt_PostalCD.getText(), txt_City.getText(),
-                txt_StatePro.getText(), txt_CountryID.getText());
-        refresh();
-    }//GEN-LAST:event_btn_UpdateActionPerformed
-
-    private void btn_DeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_DeleteActionPerformed
-        // TODO add your handling code here:
-        ilc.delete(txt_LocationID.getText());
-        refresh();
-    }//GEN-LAST:event_btn_DeleteActionPerformed
 
     private void btn_SearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_SearchActionPerformed
         // TODO add your handling code here:
         DefaultTableModel model = (DefaultTableModel) tb_Location.getModel();
         List<Location> location = ilc.search(txt_search.getText());
-      
-       model.setRowCount(0);
+
+        model.setRowCount(0);
         Object[] row = new Object[7];
-       
+
         for (int i = 0; i < location.size(); i++) {
             row[0] = i+1;
             row[1] = location.get(i).getId();
@@ -323,6 +350,38 @@ DBConnection connection = new DBConnection();
             model.addRow(row);
         }
     }//GEN-LAST:event_btn_SearchActionPerformed
+
+    private void txt_searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_searchActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_searchActionPerformed
+
+    private void btn_DeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_DeleteActionPerformed
+        // TODO add your handling code here:
+        ilc.delete(txt_LocationID.getText());
+        refresh();
+    }//GEN-LAST:event_btn_DeleteActionPerformed
+
+    private void btn_UpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_UpdateActionPerformed
+        // TODO add your handling code here:
+        ilc.update(txt_LocationID.getText(), txt_StreetAD.getText(), txt_PostalCD.getText(), txt_City.getText(),
+            txt_StatePro.getText(), txt_CountryID.getText());
+        refresh();
+    }//GEN-LAST:event_btn_UpdateActionPerformed
+
+    private void btn_InsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_InsertActionPerformed
+        // TODO add your handling code here:
+        ilc.insert(txt_LocationID.getText(), txt_StreetAD.getText(), txt_PostalCD.getText(), txt_City.getText(),
+            txt_StatePro.getText(), txt_CountryID.getText());
+        refresh();
+    }//GEN-LAST:event_btn_InsertActionPerformed
+
+    private void txt_CityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_CityActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_CityActionPerformed
+
+    private void Btn_getByIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_getByIdActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Btn_getByIdActionPerformed
 
     /**
      * @param args the command line arguments
@@ -360,6 +419,8 @@ DBConnection connection = new DBConnection();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Btn_getAll;
+    private javax.swing.JButton Btn_getById;
     private javax.swing.JButton btn_Delete;
     private javax.swing.JButton btn_Insert;
     private javax.swing.JButton btn_Search;
@@ -372,6 +433,8 @@ DBConnection connection = new DBConnection();
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
