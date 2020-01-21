@@ -14,7 +14,7 @@ import models.Country;
 
 /**
  *
- * @author FIKRI
+ * @author Galih Satriya
  */
 public class CountryController implements ICountryController{
      private ICountryDAO icdao;

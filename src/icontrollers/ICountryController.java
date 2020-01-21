@@ -10,7 +10,7 @@ import models.Country;
 
 /**
  *
- * @author FIKRI-PC
+ * @author Galih Satriya
  */
 public interface ICountryController {
     public List<Country> getAll();

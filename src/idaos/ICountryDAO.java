@@ -10,7 +10,7 @@ import models.Country;
 
 /**
  *
- * @author FIKRI-PC
+ * @author Galih Satriya
  */
 public interface ICountryDAO {
      public List<Country> getAll();
