@@ -37,7 +37,7 @@ public class LocationView extends javax.swing.JInternalFrame {
         
         cbCountryId.addItem("Select");
         for (Country c : icc.getAll()) {
-            cbCountryId.addItem(String.valueOf(c.getCid()));
+            cbCountryId.addItem(String.valueOf(c.getid()));
         }
     }
     

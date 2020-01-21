@@ -112,7 +112,9 @@ public class DepartmentView extends javax.swing.JInternalFrame {
         btnReset = new javax.swing.JButton();
         btnSearch = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setClosable(true);
+        setIconifiable(true);
+        setMaximizable(true);
 
         jInternalFrame1.setVisible(true);
 
@@ -287,7 +289,7 @@ public class DepartmentView extends javax.swing.JInternalFrame {
                     .addComponent(btnSearch))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(58, Short.MAX_VALUE))
+                .addContainerGap(94, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -295,32 +297,34 @@ public class DepartmentView extends javax.swing.JInternalFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(23, Short.MAX_VALUE)
+                .addContainerGap(55, Short.MAX_VALUE)
                 .addComponent(jInternalFrame1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(441, 441, 441))
+                .addGap(34, 34, 34))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addComponent(jInternalFrame1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 6, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
     private void txtIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtIdActionPerformed
+
+    private void txtNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNameActionPerformed
+
     private void btnInsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsertActionPerformed
 
         JOptionPane.showMessageDialog(null, idc.insert(txtId.getText(), txtName.getText(), cbxManagerId.getSelectedItem().toString(), cbxLocationId.getSelectedItem().toString()));
         refresh();
-
     }//GEN-LAST:event_btnInsertActionPerformed
-    private void txtSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSearchActionPerformed
 
-    }//GEN-LAST:event_txtSearchActionPerformed
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         JOptionPane.showMessageDialog(null, idc.update(txtId.getText(), txtName.getText(), cbxManagerId.getSelectedItem().toString(), cbxLocationId.getSelectedItem().toString()));
         refresh();
@@ -331,6 +335,14 @@ public class DepartmentView extends javax.swing.JInternalFrame {
         JOptionPane.showMessageDialog(null, idc.delete(txtId.getText()));
         refresh();
     }//GEN-LAST:event_btnDeleteActionPerformed
+
+    private void txtSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSearchActionPerformed
+
+    }//GEN-LAST:event_txtSearchActionPerformed
+
+    private void txtSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchKeyReleased
+
+    }//GEN-LAST:event_txtSearchKeyReleased
 
     private void tblTampilMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblTampilMouseClicked
         int SelectRowIndex = tblTampil.getSelectedRow();
@@ -343,20 +355,12 @@ public class DepartmentView extends javax.swing.JInternalFrame {
         cbxLocationId.setSelectedItem(model.getValueAt(SelectRowIndex, 4).toString());
     }//GEN-LAST:event_tblTampilMouseClicked
 
-    private void txtSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchKeyReleased
-       
-    }//GEN-LAST:event_txtSearchKeyReleased
-
-    private void txtNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtNameActionPerformed
-
     private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
         resetTextDepartment();
     }//GEN-LAST:event_btnResetActionPerformed
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
- model.setRowCount(0);
+        model.setRowCount(0);
 
         DefaultTableModel model = (DefaultTableModel) tblTampil.getModel();
         List<Department> departments = idc.search(txtSearch.getText());
@@ -376,20 +380,8 @@ public class DepartmentView extends javax.swing.JInternalFrame {
             model.addRow(row);
             count = count + 1;
         }
-            }//GEN-LAST:event_btnSearchActionPerformed
+    }//GEN-LAST:event_btnSearchActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new DepartmentView().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDelete;
@@ -411,5 +403,4 @@ public class DepartmentView extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtName;
     private javax.swing.JTextField txtSearch;
     // End of variables declaration//GEN-END:variables
-
 }

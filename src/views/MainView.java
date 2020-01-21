@@ -145,7 +145,7 @@ public class MainView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void miCountryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miCountryActionPerformed
-        JICountryView countryView = new JICountryView();
+        CountryView countryView = new CountryView();
         this.jiMainView.add(countryView);
         countryView.show();
     }//GEN-LAST:event_miCountryActionPerformed
@@ -157,21 +157,21 @@ public class MainView extends javax.swing.JFrame {
     }//GEN-LAST:event_miRegionActionPerformed
 
     private void miLocationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miLocationActionPerformed
-//                LocationView locationView = new LocationView();
-//        this.jiMainView.add(locationView);
-//        locationView.show();
+                LocationView locationView = new LocationView();
+        this.jiMainView.add(locationView);
+        locationView.show();
     }//GEN-LAST:event_miLocationActionPerformed
 
     private void miJobActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miJobActionPerformed
-                JobViewInternal jobView = new JobViewInternal();
+                JobView jobView = new JobView();
         this.jiMainView.add(jobView);
         jobView.show();
     }//GEN-LAST:event_miJobActionPerformed
 
     private void miDepartmentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miDepartmentActionPerformed
-//        DepartmentView departmentView = new DepartmentView();
-//        this.jiMainView.add(departmentView);
-//        departmentView.show();
+        DepartmentView departmentView = new DepartmentView();
+        this.jiMainView.add(departmentView);
+        departmentView.show();
     }//GEN-LAST:event_miDepartmentActionPerformed
 
     private void miEmployeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miEmployeeActionPerformed
