@@ -64,7 +64,7 @@ public class ManualTestLocation {
 //        testing.insert(); //pass
 //        testing.getById(); //pass
         testing.search(); //notyet
-//        testing.delete(); //notyet
-//        testing.update(); //notyet
+//        testing.delete(); //pass
+//        testing.update(); /pass
     }
 }
