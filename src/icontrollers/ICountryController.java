@@ -13,11 +13,18 @@ import models.Country;
  * @author FIKRI-PC
  */
 public interface ICountryController {
+
     public List<Country> getAll();
+
     public List<Country> getById(String c_id);
+
     public List<Country> search(String Key);
-    public String insert(String c_id,String name,String r_id);
+
+    public String insert(String c_id, String name, String r_id);
+
     public String update(String c_id, String name, String r_id);
+
     public String delete(String c_id);
+
     public Iterable<Country> getByName(String Val);
 }

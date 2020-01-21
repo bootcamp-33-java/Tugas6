@@ -10,23 +10,19 @@ import models.Location;
 
 /**
  *
- * @author Fachrurrozy
+ * @author aqira
  */
 public interface ILocationDAO {
-    /**
-     * 
-     * @return 
-     */
+    
     public List<Location> getAll();
-    
-    public List<Location> getLocid(int locid);
-    
+
+    public List<Location> getById(int id);
+
     public List<Location> search(String key);
-    
+
     public boolean insert(Location l);
-    
+
     public boolean update(Location l);
-    
-    public boolean delete(int locid);
-    
+
+    public boolean delete(int id);
 }
