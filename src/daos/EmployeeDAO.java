@@ -29,7 +29,7 @@ public class EmployeeDAO implements IEmployeeDAO {
     public List<Employee> getAll() {
         List<Employee> listEmployees = new ArrayList<>();
         String query = "SELECT EMPLOYEE_ID, FIRST_NAME, LAST_NAME, EMAIL, PHONE_NUMBER,"
-                + "TO_CHAR(HIRE_DATE, 'DD/MM/YYYY'), JOB_ID, SALARY, COMMISSION_PCT, MANAGER_ID"
+                + "TO_CHAR(HIRE_DATE, 'MM/DD/YYYY'), JOB_ID, SALARY, COMMISSION_PCT, MANAGER_ID"
                 + ", DEPARTMENT_ID FROM EMPLOYEES ORDER BY EMPLOYEE_ID";
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(query);
@@ -52,7 +52,7 @@ public class EmployeeDAO implements IEmployeeDAO {
     @Override
     public boolean insert(Employee employee) {
         boolean result = false;
-        String query = "INSERT INTO EMPLOYEES VALUES (?,?,?,?,?,TO_DATE(?, 'mm/dd/yyyy'),?,?,?,?,?)";
+        String query = "INSERT INTO EMPLOYEES VALUES (?,?,?,?,?,TO_CHAR(?, 'MM/DD/YYYY'),?,?,?,?,?)";
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setInt(1, employee.getId());
