@@ -74,6 +74,7 @@ public class DepartmentDAO implements IDepartmentDAO {
             key = "'%"+key+"%'";
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, key);
+             preparedStatement.setString(2, key);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {//memeriksa apakah 
                 Department d = new Department(resultSet.getInt(1), resultSet.getString(2), resultSet.getInt(3), resultSet.getInt(4));
