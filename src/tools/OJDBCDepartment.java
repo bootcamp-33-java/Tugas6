@@ -19,7 +19,7 @@ public class OJDBCDepartment {
     IDepartmentController iddao = new DepartmentController(connection.getConnection());
 
     public void getAll() {
-
+ 
         for (Department department : iddao.getAll()) {
             System.out.println(department.getId());
             System.out.println(department.getName());

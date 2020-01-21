@@ -113,9 +113,21 @@ public class JobViewInternal extends javax.swing.JInternalFrame {
         btnSearchJob = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
 
+        txtSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtSearchActionPerformed(evt);
+            }
+        });
+
         jLabel3.setText("Min Salary");
 
         jLabel4.setText("Max Salary");
+
+        txtMaxSalary.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtMaxSalaryActionPerformed(evt);
+            }
+        });
 
         label1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         label1.setText("Insert New Job");
@@ -321,6 +333,14 @@ public class JobViewInternal extends javax.swing.JInternalFrame {
         }
         resetTextJob();
     }//GEN-LAST:event_btnSearchJobActionPerformed
+
+    private void txtMaxSalaryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMaxSalaryActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtMaxSalaryActionPerformed
+
+    private void txtSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSearchActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtSearchActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

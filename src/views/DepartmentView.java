@@ -11,6 +11,7 @@ import controllers.LocationController;
 import icontrollers.IDepartmentController;
 import icontrollers.IEmployeeController;
 import icontrollers.ILocationController;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -23,7 +24,7 @@ import tools.DBConnection;
  *
  * @author FIKRI-PC
  */
-public class DepartmentView extends javax.swing.JFrame {
+public class DepartmentView extends javax.swing.JInternalFrame {
 
     DBConnection connection = new DBConnection();
     IDepartmentController idc = new DepartmentController(connection.getConnection());
@@ -105,11 +106,11 @@ public class DepartmentView extends javax.swing.JFrame {
             }
         };
         lblManagerId = new javax.swing.JLabel();
-        cbxSearch = new javax.swing.JComboBox<>();
         lblLocationId = new javax.swing.JLabel();
         cbxManagerId = new javax.swing.JComboBox<>();
         cbxLocationId = new javax.swing.JComboBox<>();
         btnReset = new javax.swing.JButton();
+        btnSearch = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -190,19 +191,19 @@ public class DepartmentView extends javax.swing.JFrame {
 
         lblManagerId.setText("Manager Id");
 
-        cbxSearch.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "select", "Id", "Name", "Manager Id", "Location Id" }));
-        cbxSearch.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbxSearchActionPerformed(evt);
-            }
-        });
-
         lblLocationId.setText("Location Id");
 
         btnReset.setText("Reset");
         btnReset.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnResetActionPerformed(evt);
+            }
+        });
+
+        btnSearch.setText("Search");
+        btnSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSearchActionPerformed(evt);
             }
         });
 
@@ -214,8 +215,8 @@ public class DepartmentView extends javax.swing.JFrame {
                 .addGap(55, 55, 55)
                 .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(cbxSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(61, Short.MAX_VALUE))
+                .addComponent(btnSearch)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jInternalFrame1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
@@ -231,7 +232,7 @@ public class DepartmentView extends javax.swing.JFrame {
                         .addComponent(btnDelete)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnReset)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addGap(0, 28, Short.MAX_VALUE))
                     .addGroup(jInternalFrame1Layout.createSequentialGroup()
                         .addComponent(lblId)
                         .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -283,7 +284,7 @@ public class DepartmentView extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cbxSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnSearch))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(58, Short.MAX_VALUE))
@@ -342,47 +343,8 @@ public class DepartmentView extends javax.swing.JFrame {
         cbxLocationId.setSelectedItem(model.getValueAt(SelectRowIndex, 4).toString());
     }//GEN-LAST:event_tblTampilMouseClicked
 
-    private void cbxSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxSearchActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cbxSearchActionPerformed
-
     private void txtSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchKeyReleased
-        String filter = (String) cbxSearch.getSelectedItem();
-        String val = txtSearch.getText();
-        switch (filter) {
-            case "Id":
-                if (val.isEmpty()) {
-                    refresh();
-                } else {
-                    refresh();
-                    model.getDataVector().removeAllElements();
-                    for (Department d : idc.getById(val)) {
-                        Object[] row = new Object[2];
-                        row[0] = d.getId();
-                        model.addRow(row);
-                    }
-                }
-                break;
-            case "Name":
-                try {
-                    if (val.isEmpty()) {
-                        refresh();
-                    } else {
-                        refresh();
-                        model.getDataVector().removeAllElements();
-                        for (Department d : idc.getByName(val)) {
-                            Object[] row = new Object[2];
-                            row[1] = d.getName();
-                            model.addRow(row);
-                        }
-                    }
-                } catch (Exception e) {
-                    System.out.println(e.getMessage());
-                }
-                break;
-            default:
-                break;
-        }// TODO add your handling code here:
+       
     }//GEN-LAST:event_txtSearchKeyReleased
 
     private void txtNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNameActionPerformed
@@ -392,6 +354,29 @@ public class DepartmentView extends javax.swing.JFrame {
     private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
         resetTextDepartment();
     }//GEN-LAST:event_btnResetActionPerformed
+
+    private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
+ model.setRowCount(0);
+
+        DefaultTableModel model = (DefaultTableModel) tblTampil.getModel();
+        List<Department> departments = idc.search(txtSearch.getText());
+        Object[] row = new Object[5];
+        List<Department> ds = new ArrayList<>();
+        ds = idc.search(txtSearch.getText());
+
+        int count = 0;
+
+        for (int i = 0; i< ds.size(); i++) {
+
+            row[0] = count + 1;
+            row[1] = ds.get(count).getId();
+            row[2] = ds.get(count).getName();
+            row[3] = ds.get(count).getManagerId();
+            row[4] = ds.get(count).getLocationId();
+            model.addRow(row);
+            count = count + 1;
+        }
+            }//GEN-LAST:event_btnSearchActionPerformed
 
     /**
      * @param args the command line arguments
@@ -410,10 +395,10 @@ public class DepartmentView extends javax.swing.JFrame {
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnInsert;
     private javax.swing.JButton btnReset;
+    private javax.swing.JButton btnSearch;
     private javax.swing.JButton btnUpdate;
     private javax.swing.JComboBox<String> cbxLocationId;
     private javax.swing.JComboBox<String> cbxManagerId;
-    private javax.swing.JComboBox<String> cbxSearch;
     private javax.swing.JInternalFrame jInternalFrame1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblHeader;
