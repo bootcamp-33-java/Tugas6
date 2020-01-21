@@ -50,7 +50,7 @@ public class CountryView extends javax.swing.JFrame {
         country = icc.getAll();
         for (int i = 0; i < country.size(); i++) {
             row[0] = i + 1;
-            row[1] = country.get(i).getCid();
+            row[1] = country.get(i).getid();
             row[2] = country.get(i).getName();
             row[3] = country.get(i).getRid();
 
@@ -65,7 +65,7 @@ public class CountryView extends javax.swing.JFrame {
         country = icc.getAll();
         for (int i = 0; i < country.size(); i++) {
             row[0] = i + 1;
-            row[1] = country.get(i).getCid();
+            row[1] = country.get(i).getid();
             row[2] = country.get(i).getName();
             row[3] = country.get(i).getRid();
             model.addRow(row);
@@ -336,7 +336,7 @@ public class CountryView extends javax.swing.JFrame {
                     model.getDataVector().removeAllElements();
                     for (Country c : icc.getById(val)) {
                         Object[] row = new Object[2];
-                        row[0] = c.getCid();
+                        row[0] = c.getid();
                         model.addRow(row);
                     }
                 }
@@ -375,7 +375,7 @@ public class CountryView extends javax.swing.JFrame {
 
         for (Country c : icc.search(TxtSearch.getText())) {
             row[0] = count + 1;
-            row[1] = country.get(count).getCid();
+            row[1] = country.get(count).getid();
             row[2] = country.get(count).getName();
             row[3] = country.get(count).getRid();
             model.addRow(row);

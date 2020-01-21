@@ -23,7 +23,7 @@ public class Country {
         this.regionId = regionId;
     }
 
-    public String getCid() {
+    public String getid() {
         return id;
     }
 

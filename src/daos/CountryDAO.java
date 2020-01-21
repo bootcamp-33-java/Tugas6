@@ -85,7 +85,7 @@ public class CountryDAO implements ICountryDAO {
         String query = "INSERT INTO COUNTRIES (country_id, country_name, region_id) VALUES (?,?,?)";
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setString(1, c.getCid());
+            preparedStatement.setString(1, c.getid());
             preparedStatement.setString(2, c.getName());
             preparedStatement.setInt(3, c.getRid());
 
@@ -105,7 +105,7 @@ public class CountryDAO implements ICountryDAO {
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, c.getName());
             preparedStatement.setInt(2, c.getRid());
-            preparedStatement.setString(3, c.getCid());
+            preparedStatement.setString(3, c.getid());
             preparedStatement.executeQuery();
             result = true;
         } catch (Exception e) {
