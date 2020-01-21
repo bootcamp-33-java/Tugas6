@@ -17,6 +17,8 @@ public interface IDepartmentDAO {
     public List<Department> getAll();
 
     public List<Department> getById(int id);
+    
+    public List<Department> getByName(String name);
 
     public List<Department> search(String key);
 
