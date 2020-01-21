@@ -21,7 +21,7 @@ public class OJDBCEmployees {
     public void getAll() {
 
         for (Employee employee : irdao.getAll()) {
-            System.out.println(employee.getEmployeeID());
+            System.out.println(employee.getId());
             System.out.println(employee.getFirstName());
             System.out.println(employee.getLastName());
             System.out.println(employee.getEmail());
@@ -37,7 +37,7 @@ public class OJDBCEmployees {
 
     public void getById() {
         for (Employee employee : irdao.getById(206)) {
-            System.out.println(employee.getEmployeeID());
+            System.out.println(employee.getId());
             System.out.println(employee.getFirstName());
             System.out.println(employee.getLastName());
             System.out.println(employee.getEmail());
@@ -53,7 +53,7 @@ public class OJDBCEmployees {
 
     public void search() {
         for (Employee employee : irdao.search("AC_ACCOUNT")) {
-            System.out.println(employee.getEmployeeID());
+            System.out.println(employee.getId());
             System.out.println(employee.getFirstName());
             System.out.println(employee.getLastName());
             System.out.println(employee.getEmail());

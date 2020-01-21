@@ -28,7 +28,7 @@ public class EmployeeDAO implements IEmployeeDAO{
     @Override
     public List<Employee> getAll() {
         List<Employee> listEmployees = new ArrayList<>();
-        String query = "SELECT * FROM EMPLOYEES";
+        String query = "SELECT * FROM EMPLOYEES ORDER BY EMPLOYEE_ID 1";
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -53,7 +53,7 @@ public class EmployeeDAO implements IEmployeeDAO{
         String query = "INSERT INTO EMPLOYEES VALUES (?,?,?,?,?,TO_DATE(?, 'mm/dd/yyyy'),?,?,?,?,?)";
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setInt(1, j.getEmployeeID());
+            preparedStatement.setInt(1, j.getId());
             preparedStatement.setString(2, j.getFirstName());
             preparedStatement.setString(3, j.getLastName());
             preparedStatement.setString(4, j.getEmail());
@@ -103,7 +103,7 @@ public class EmployeeDAO implements IEmployeeDAO{
         String query = "SELECT * FROM EMPLOYEES WHERE FIRST_NAME LIKE ? OR LAST_NAME LIKE ? "
                 + "OR EMPLOYEE_ID LIKE ? OR EMAIL LIKE ? OR PHONE_NUMBER LIKE ? OR HIRE_DATE LIKE ? "
                 + "OR JOB_ID LIKE ? OR SALARY LIKE ? OR COMMISSION_PCT LIKE ? OR MANAGER_ID LIKE ? "
-                + "OR DEPARTMENT_ID LIKE ?";
+                + "OR DEPARTMENT_ID LIKE ? ORDER BY EMPLOYEE_ID 1";
         try {
             key = "%" + key + "%";
             PreparedStatement preparedStatement = connection.prepareStatement(query);
@@ -143,7 +143,7 @@ public class EmployeeDAO implements IEmployeeDAO{
             preparedStatement.setFloat(8, j.getCommisionPCT());
             preparedStatement.setInt(9, j.getManagerID());
             preparedStatement.setInt(10, j.getDepartmentID());
-            preparedStatement.setInt(11, j.getEmployeeID());
+            preparedStatement.setInt(11, j.getId());
             preparedStatement.executeQuery();
             result = true;
         } catch (Exception e) {

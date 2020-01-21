@@ -10,12 +10,12 @@ package models;
  * @author BWP
  */
 public class Employee {
-    private int employeeID, salary,managerID,departmentID;
+    private int id, salary,managerID,departmentID;
     private String firstName, lastName, email, phoneNumber, hireDate, jobID;
     private float commisionPCT;
 
-    public Employee(int employeeID, String firstName, String lastName, String email, String phoneNumber, String hireDate, String jobID, int salary, float commisionPCT, int managerID, int departmentID) {
-        this.employeeID = employeeID;
+    public Employee(int id, String firstName, String lastName, String email, String phoneNumber, String hireDate, String jobID, int salary, float commisionPCT, int managerID, int departmentID) {
+        this.id = id;
         this.salary = salary;
         this.managerID = managerID;
         this.departmentID = departmentID;
@@ -31,8 +31,8 @@ public class Employee {
     public Employee() {
     }
 
-    public int getEmployeeID() {
-        return employeeID;
+    public int getId() {
+        return id;
     }
 
     public int getSalary() {
@@ -75,8 +75,8 @@ public class Employee {
         return commisionPCT;
     }
 
-    public void setEmployeeID(int employeeID) {
-        this.employeeID = employeeID;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public void setSalary(int salary) {

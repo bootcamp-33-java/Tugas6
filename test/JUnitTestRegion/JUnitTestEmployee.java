@@ -45,11 +45,11 @@ public class JUnitTestEmployee {
 
     @Test
     public void testInsert() {
-        iec.insert("216", "SidulLee", "BoyLee", "BOYGMAILLLee", "532628", "10/10/2002", "AC_ACCOUNT", 8300, 0.2F, 205, 110);
+        iec.insert("216", "SidulLee", "BoyLee", "BOYGMAILLLee", "532628", "10/10/2002", "AC_ACCOUNT", "8300", "0.2", "205", "110");
         //Employee employee = new Employee(900, "gianny", "luigi", "a@mail.com", "098970", new Date("12/01/2019"), new BigDecimal(23), new BigDecimal(0.2), new Department(new Short("90")), new Employee(100), new Job("AD_PRES"));   
         List<Employee> m = iec.getById("216");
        
-        Assert.assertEquals("216", String.valueOf(m.get(0).getEmployeeID()));
+        Assert.assertEquals("216", String.valueOf(m.get(0).getId()));
         Assert.assertEquals("SidulLee", m.get(0).getFirstName());
         Assert.assertEquals("BoyLee", m.get(0).getLastName());
         Assert.assertEquals("BOYGMAILLLee", m.get(0).getEmail());

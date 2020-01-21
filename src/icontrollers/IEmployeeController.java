@@ -42,7 +42,7 @@ public interface IEmployeeController {
      * @return 
      */
     public String insert(String id, String firstName, String lastName, String email, String phoneNumber, 
-            String hireDate, String jobId, int salary, float commissionPct, int managerId, int departmentId );
+            String hireDate, String jobId, String salary, String commissionPct, String managerId, String departmentId);
 
     /**
      * untuk mengupdate data sesuai id
@@ -51,7 +51,7 @@ public interface IEmployeeController {
      * @return 
      */
     public String update(String id, String firstName, String lastName, String email, String phoneNumber, 
-            String hireDate, String jobId, int salary, float commissionPct, int managerId, int departmentId);
+            String hireDate, String jobId, String salary, String commissionPct, String managerId, String departmentId);
     
     /**
      * untuk mendelete berdasarkan id atau nama
