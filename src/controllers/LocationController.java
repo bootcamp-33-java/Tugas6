@@ -42,7 +42,7 @@ public class LocationController implements ILocationController {
     @Override
     public String insert(String id, String address, String postal_code, String city, String stateProvince, String countryId) {
         String result = "";
-        Location location = new Location(Integer.parseInt(id), address, Integer.parseInt(postal_code), city, stateProvince, countryId);
+        Location location = new Location(Integer.parseInt(id), address, postal_code, city, stateProvince, countryId);
         if (ildao.insert(location)) {
             result = "Data berhasil disimpan";
         } else {
@@ -55,7 +55,7 @@ public class LocationController implements ILocationController {
     public String update(String id, String address, String postalCode, String city, 
             String stateProvince, String countryId) {
         String result = "";
-        Location location = new Location(Integer.parseInt(id), address, Integer.parseInt(postalCode), city, 
+        Location location = new Location(Integer.parseInt(id), address, postalCode, city, 
                 stateProvince, countryId);
         if (ildao.update(location)) {
             result = "Data berhasil diupdate";

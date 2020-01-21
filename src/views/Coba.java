@@ -18,8 +18,10 @@ import tools.DBConnection;
  * @author TUF FX504
  */
 public class Coba extends javax.swing.JFrame {
-DBConnection connection = new DBConnection();
+
+    DBConnection connection = new DBConnection();
     ILocationController ilc = new LocationController(connection.getConnection());
+
     /**
      * Creates new form Coba
      */
@@ -28,16 +30,15 @@ DBConnection connection = new DBConnection();
         refresh();
     }
 
-    public void refresh(){
-    DefaultTableModel model = (DefaultTableModel) tb_Location.getModel();
-        
-       
+    public void refresh() {
+        DefaultTableModel model = (DefaultTableModel) tb_Location.getModel();
+
         model.setRowCount(0);
         Object[] row = new Object[7];
         List<Location> location = new ArrayList<>();
         location = ilc.getAll();
         for (int i = 0; i < location.size(); i++) {
-            row[0] = i+1;
+            row[0] = i + 1;
             row[1] = location.get(i).getId();
             row[2] = location.get(i).getAddress();
             row[3] = location.get(i).getPostalCode();
@@ -47,7 +48,7 @@ DBConnection connection = new DBConnection();
             model.addRow(row);
         }
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -65,7 +66,7 @@ DBConnection connection = new DBConnection();
         btn_Insert = new javax.swing.JButton();
         btn_Update = new javax.swing.JButton();
         btn_Delete = new javax.swing.JButton();
-        txt_search = new javax.swing.JTextField();
+        txt_input = new javax.swing.JTextField();
         btn_Search = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -121,9 +122,9 @@ DBConnection connection = new DBConnection();
             }
         });
 
-        txt_search.addActionListener(new java.awt.event.ActionListener() {
+        txt_input.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt_searchActionPerformed(evt);
+                txt_inputActionPerformed(evt);
             }
         });
 
@@ -163,6 +164,11 @@ DBConnection connection = new DBConnection();
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
             }
         });
+        tb_Location.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tb_LocationMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(tb_Location);
 
         Btn_getAll.setText("Refresh Table");
@@ -193,7 +199,7 @@ DBConnection connection = new DBConnection();
                     .addGroup(jInternalFrame1Layout.createSequentialGroup()
                         .addComponent(jLabel9)
                         .addGap(55, 55, 55)
-                        .addComponent(txt_search, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txt_input, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel8)
                         .addGap(18, 18, 18)
@@ -267,7 +273,7 @@ DBConnection connection = new DBConnection();
                     .addComponent(btn_Delete))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txt_search, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txt_input, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9)
                     .addComponent(jLabel8)
                     .addComponent(btn_Search)
@@ -276,7 +282,7 @@ DBConnection connection = new DBConnection();
                 .addComponent(Btn_getAll)
                 .addGap(4, 4, 4)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(297, Short.MAX_VALUE))
+                .addContainerGap(305, Short.MAX_VALUE))
         );
 
         jMenu1.setText("File");
@@ -334,13 +340,13 @@ DBConnection connection = new DBConnection();
     private void btn_SearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_SearchActionPerformed
         // TODO add your handling code here:
         DefaultTableModel model = (DefaultTableModel) tb_Location.getModel();
-        List<Location> location = ilc.search(txt_search.getText());
+        List<Location> location = ilc.search(txt_input.getText());
 
         model.setRowCount(0);
         Object[] row = new Object[7];
 
         for (int i = 0; i < location.size(); i++) {
-            row[0] = i+1;
+            row[0] = i + 1;
             row[1] = location.get(i).getId();
             row[2] = location.get(i).getAddress();
             row[3] = location.get(i).getPostalCode();
@@ -351,9 +357,9 @@ DBConnection connection = new DBConnection();
         }
     }//GEN-LAST:event_btn_SearchActionPerformed
 
-    private void txt_searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_searchActionPerformed
+    private void txt_inputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_inputActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txt_searchActionPerformed
+    }//GEN-LAST:event_txt_inputActionPerformed
 
     private void btn_DeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_DeleteActionPerformed
         // TODO add your handling code here:
@@ -364,14 +370,14 @@ DBConnection connection = new DBConnection();
     private void btn_UpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_UpdateActionPerformed
         // TODO add your handling code here:
         ilc.update(txt_LocationID.getText(), txt_StreetAD.getText(), txt_PostalCD.getText(), txt_City.getText(),
-            txt_StatePro.getText(), txt_CountryID.getText());
+                txt_StatePro.getText(), txt_CountryID.getText());
         refresh();
     }//GEN-LAST:event_btn_UpdateActionPerformed
 
     private void btn_InsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_InsertActionPerformed
         // TODO add your handling code here:
         ilc.insert(txt_LocationID.getText(), txt_StreetAD.getText(), txt_PostalCD.getText(), txt_City.getText(),
-            txt_StatePro.getText(), txt_CountryID.getText());
+                txt_StatePro.getText(), txt_CountryID.getText());
         refresh();
     }//GEN-LAST:event_btn_InsertActionPerformed
 
@@ -381,7 +387,37 @@ DBConnection connection = new DBConnection();
 
     private void Btn_getByIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_getByIdActionPerformed
         // TODO add your handling code here:
+        DefaultTableModel model = (DefaultTableModel) tb_Location.getModel();
+        List<Location> location = ilc.getById(txt_input.getText());
+
+        model.setRowCount(0);
+        Object[] row = new Object[7];
+
+        for (int i = 0; i < location.size(); i++) {
+            row[0] = i + 1;
+            row[1] = location.get(i).getId();
+            row[2] = location.get(i).getAddress();
+            row[3] = location.get(i).getPostalCode();
+            row[4] = location.get(i).getCity();
+            row[5] = location.get(i).getStateProvince();
+            row[6] = location.get(i).getCountryId();
+            model.addRow(row);
+        }
     }//GEN-LAST:event_Btn_getByIdActionPerformed
+
+    private void tb_LocationMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tb_LocationMouseClicked
+        // TODO add your handling code here:
+//        DefaultTableModel model = (DefaultTableModel) tb_Location.getModel();
+//        ListSelectionModel rowSelMod = tb_Location.getSelectionModel();
+//        
+//        int i = tb_Location.getSelectedRow();
+//        txt_LocationID.setText(model.getValueAt(i,1).toString());
+//        txt_StreetAD.setText(model.getValueAt(i, 2).toString());
+//        txt_PostalCD.setText(model.getValueAt(i, 2).toString());
+//        txt_City.setText(model.getValueAt(i, 2).toString());
+//        txt_statePro.setText(model.getValueAt(i, 2).toString());
+//        txt_StreetAD.setText(model.getValueAt(i, 2).toString());
+    }//GEN-LAST:event_tb_LocationMouseClicked
 
     /**
      * @param args the command line arguments
@@ -447,6 +483,6 @@ DBConnection connection = new DBConnection();
     private javax.swing.JTextField txt_PostalCD;
     private javax.swing.JTextField txt_StatePro;
     private javax.swing.JTextField txt_StreetAD;
-    private javax.swing.JTextField txt_search;
+    private javax.swing.JTextField txt_input;
     // End of variables declaration//GEN-END:variables
 }

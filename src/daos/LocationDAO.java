@@ -34,11 +34,11 @@ public class LocationDAO implements ILocationDAO {
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                Location l = new Location(resultSet.getInt(1), resultSet.getString(2), resultSet.getInt(3),
+                Location l = new Location(resultSet.getInt(1), resultSet.getString(2), resultSet.getString(3),
                         resultSet.getString(4), resultSet.getString(5), resultSet.getString(6));
                 l.setId(resultSet.getInt(1));
                 l.setAddress(resultSet.getString(2));
-                l.setPostalCode(resultSet.getInt(3));
+                l.setPostalCode(resultSet.getString(3));
                 l.setCity(resultSet.getString(4));
                 l.setStateProvince(resultSet.getString(5));
                 l.setCountryId(resultSet.getString(6));
@@ -60,11 +60,11 @@ public class LocationDAO implements ILocationDAO {
             preparedStatement.setInt(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                Location l = new Location(resultSet.getInt(1), resultSet.getString(2), resultSet.getInt(3),
+                Location l = new Location(resultSet.getInt(1), resultSet.getString(2), resultSet.getString(3),
                         resultSet.getString(4), resultSet.getString(5), resultSet.getString(6));
                 l.setId(resultSet.getInt(1));
                 l.setAddress(resultSet.getString(2));
-                l.setPostalCode(resultSet.getInt(3));
+                l.setPostalCode(resultSet.getString(3));
                 l.setCity(resultSet.getString(4));
                 l.setStateProvince(resultSet.getString(5));
                 l.setCountryId(resultSet.getString(6));
@@ -80,15 +80,18 @@ public class LocationDAO implements ILocationDAO {
     @Override
     public List<Location> search(String key) {
         List<Location> listSearch = new ArrayList();
-        String query = "SELECT * FROM locations WHERE location_id LIKE ? OR street_address LIKE != LOWER (?) ?";
+        String query = "SELECT * FROM locations WHERE location_id LIKE '%?%' OR street_address LIKE '%?%' OR postal_code LIKE '%?%' OR city LIKE '%?%' OR state_province LIKE '%?%' OR country_id LIKE '%?%'";
         try {
-            key = "%"+key+"%";
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, key);
             preparedStatement.setString(2, key);
+            preparedStatement.setString(3, key);
+            preparedStatement.setString(4, key);
+            preparedStatement.setString(5, key);
+            preparedStatement.setString(6, key);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                Location l = new Location(resultSet.getInt(1), resultSet.getString(2), resultSet.getInt(3), resultSet.getString(4), resultSet.getString(5), resultSet.getString(6));
+                Location l = new Location(resultSet.getInt(1), resultSet.getString(2), resultSet.getString(3), resultSet.getString(4), resultSet.getString(5), resultSet.getString(6));
                 
 
                 listSearch.add(l);
@@ -108,7 +111,7 @@ public class LocationDAO implements ILocationDAO {
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setInt(1, l.getId());
             preparedStatement.setString(2, l.getAddress());
-            preparedStatement.setInt(3, l.getPostalCode());
+            preparedStatement.setString(3, l.getPostalCode());
             preparedStatement.setString(4, l.getCity());
             preparedStatement.setString(5, l.getStateProvince());
             preparedStatement.setString(6, l.getCountryId());
@@ -123,15 +126,16 @@ public class LocationDAO implements ILocationDAO {
     @Override
     public boolean update(Location l) {
         boolean result = false;
-        String query = "UPDATE locations SET location_name  = '?'  WHERE Location_id = ?";
+        String query = "UPDATE locations SET state_address = '?', postal_code = '?', city = '?', state_province = '?', country_id = '?' "
+                + "WHERE location_id = ?";
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, l.getAddress());
-            preparedStatement.setInt(2, l.getId());
-            preparedStatement.setInt(3, l.getPostalCode());
-            preparedStatement.setString(4, l.getCity());
-            preparedStatement.setString(5, l.getStateProvince());
-            preparedStatement.setString(6, l.getCountryId());
+            preparedStatement.setString(2, l.getPostalCode());
+            preparedStatement.setString(3, l.getCity());
+            preparedStatement.setString(4, l.getStateProvince());
+            preparedStatement.setString(5, l.getCountryId());
+            preparedStatement.setInt(6, l.getId());
             preparedStatement.executeQuery();
             result = true;
         } catch (Exception e) {

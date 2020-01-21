@@ -13,7 +13,7 @@ public class Location {
 
     private int id;
     private String address;
-    private int postalCode;
+    private String postalCode;
     private String city;
     private String stateProvince;
     private String countryId;
@@ -21,7 +21,7 @@ public class Location {
     public Location() {
     }
 
-    public Location(int id, String address, int postalCode, String city, String stateProvince, String countryId) {
+    public Location(int id, String address, String postalCode, String city, String stateProvince, String countryId) {
         this.id = id;
         this.address = address;
         this.postalCode = postalCode;
@@ -39,7 +39,7 @@ public class Location {
         return address;
     }
 
-    public int getPostalCode() {
+    public String getPostalCode() {
         return postalCode;
     }
 
@@ -63,7 +63,7 @@ public class Location {
         this.address = address;
     }
 
-    public void setPostalCode(int postalCode) {
+    public void setPostalCode(String postalCode) {
         this.postalCode = postalCode;
     }
 

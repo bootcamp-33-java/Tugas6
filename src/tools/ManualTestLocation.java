@@ -19,7 +19,7 @@ public class ManualTestLocation {
     ILocationDAO ildao = new LocationDAO(connection.getConnection());
 
     public void getAll() {
-
+        System.out.println(ildao.getAll().size());
         for (Location location : ildao.getAll()) {
             System.out.print(location.getId() + "  | ");
             System.out.print(location.getAddress() + " |  ");
@@ -31,7 +31,7 @@ public class ManualTestLocation {
     }
 
     public void insert() {
-        Location location = new Location(9999, "Indonesia", 40000, "a", "b", "IT");
+        Location location = new Location(9997, "Indonesia", "40000", "a", "b", "IT");
         System.out.println(ildao.insert(location));
     }
 
@@ -45,9 +45,9 @@ public class ManualTestLocation {
             System.out.println(location.getCountryId() + "  | ");
         }
     }
-    
-        public void search() {
-        for (Location location : ildao.search("Cola")) {
+
+    public void search() {
+        for (Location location : ildao.search("Jak")) {
             System.out.print(location.getId() + "  | ");
             System.out.print(location.getAddress() + " |  ");
             System.out.print(location.getPostalCode() + " |  ");
@@ -57,14 +57,23 @@ public class ManualTestLocation {
         }
     }
 
+    public void delete() {
+
+        System.out.println(ildao.delete(9997));
+    }
+
+    public void update() {
+        Location location = new Location(9999,"Bandung","222","z","z","IT");
+    }
+
     public static void main(String[] args) {
         ManualTestLocation testing = new ManualTestLocation();
-        
+
 //        testing.getAll(); //pass
 //        testing.insert(); //pass
 //        testing.getById(); //pass
         testing.search(); //notyet
 //        testing.delete(); //pass
-//        testing.update(); /pass
+//        testing.update(); //pass
     }
 }
