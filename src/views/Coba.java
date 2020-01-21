@@ -23,41 +23,19 @@ import models.Country;
  */
 public class Coba extends javax.swing.JFrame {
 
-    DBConnection connection = new DBConnection();
-    ILocationController ilc = new LocationController(connection.getConnection());
-    ICountryController icc = new CountryController(connection.getConnection());
+   
     
     /**
      * Creates new form Coba
      */
     public Coba() {
         initComponents();
-        refresh();
+       
         
-        cbCountryId.addItem("Select");
-        for (Country c : icc.getAll()) {
-            cbCountryId.addItem(String.valueOf(c.getCid()));
-        }
+        
     }
 
-    public void refresh() {
-        DefaultTableModel model = (DefaultTableModel) tblLocation.getModel();
-
-        model.setRowCount(0);
-        Object[] row = new Object[7];
-        List<Location> location = new ArrayList<>();
-        location = ilc.getAll();
-        for (int i = 0; i < location.size(); i++) {
-            row[0] = i + 1;
-            row[1] = location.get(i).getId();
-            row[2] = location.get(i).getAddress();
-            row[3] = location.get(i).getPostalCode();
-            row[4] = location.get(i).getCity();
-            row[5] = location.get(i).getStateProvince();
-            row[6] = location.get(i).getCountryId();
-            model.addRow(row);
-        }
-    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -69,36 +47,6 @@ public class Coba extends javax.swing.JFrame {
     private void initComponents() {
 
         jInternalFrame1 = new javax.swing.JInternalFrame();
-        txtCity = new javax.swing.JTextField();
-        txtStateProvince = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
-        btn_Insert = new javax.swing.JButton();
-        btn_Update = new javax.swing.JButton();
-        btn_Delete = new javax.swing.JButton();
-        txtInput = new javax.swing.JTextField();
-        btnSearch = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        txtLocationId = new javax.swing.JTextField();
-        txtStreetAddress = new javax.swing.JTextField();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        tblLocation = new javax.swing.JTable()
-        {
-            public boolean isCellEditable(int rowIndex, int colIndex)
-            {
-                return false; //Disallow the editing of any cell
-            }
-        };
-        txtPostalCode = new javax.swing.JTextField();
-        btnGetAll = new javax.swing.JButton();
-        btnGetById = new javax.swing.JButton();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        cbCountryId = new javax.swing.JComboBox<>();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -108,205 +56,23 @@ public class Coba extends javax.swing.JFrame {
 
         jInternalFrame1.setVisible(true);
 
-        txtCity.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCityActionPerformed(evt);
-            }
-        });
-
-        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jLabel7.setText("Location");
-
-        btn_Insert.setText("Insert");
-        btn_Insert.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_InsertActionPerformed(evt);
-            }
-        });
-
-        btn_Update.setText("Update");
-        btn_Update.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_UpdateActionPerformed(evt);
-            }
-        });
-
-        btn_Delete.setText("Delete");
-        btn_Delete.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_DeleteActionPerformed(evt);
-            }
-        });
-
-        txtInput.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtInputActionPerformed(evt);
-            }
-        });
-
-        btnSearch.setText("Search");
-        btnSearch.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSearchActionPerformed(evt);
-            }
-        });
-
-        jLabel1.setText("Location ID");
-
-        jLabel2.setText("Street Address");
-
-        jLabel3.setText("Postal Code");
-
-        jLabel4.setText("City");
-
-        jLabel5.setText("State Province");
-
-        jLabel6.setText("Country ID");
-
-        tblLocation.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "No", "LocationID", "Street Address", "Postal Code", "City", "State Province", "Country ID"
-            }
-        ));
-        tblLocation.addAncestorListener(new javax.swing.event.AncestorListener() {
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-            }
-            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
-                tblLocationAncestorAdded(evt);
-            }
-            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
-            }
-        });
-        tblLocation.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tblLocationMouseClicked(evt);
-            }
-        });
-        jScrollPane2.setViewportView(tblLocation);
-
-        btnGetAll.setText("Refresh Table");
-        btnGetAll.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnGetAllActionPerformed(evt);
-            }
-        });
-
-        btnGetById.setText("Sesuai dengan ID");
-        btnGetById.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnGetByIdActionPerformed(evt);
-            }
-        });
-
-        jLabel8.setText("Pencarian Sebagai :");
-
-        jLabel9.setText("Input :");
-
-        cbCountryId.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbCountryIdActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jInternalFrame1Layout = new javax.swing.GroupLayout(jInternalFrame1.getContentPane());
         jInternalFrame1.getContentPane().setLayout(jInternalFrame1Layout);
         jInternalFrame1Layout.setHorizontalGroup(
             jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jInternalFrame1Layout.createSequentialGroup()
-                .addGap(55, 55, 55)
-                .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane2)
-                    .addGroup(jInternalFrame1Layout.createSequentialGroup()
-                        .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jInternalFrame1Layout.createSequentialGroup()
-                                .addGap(77, 77, 77)
-                                .addComponent(btn_Insert)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btn_Update)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btn_Delete))
-                            .addGroup(jInternalFrame1Layout.createSequentialGroup()
-                                .addGap(110, 110, 110)
-                                .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtLocationId)
-                                    .addComponent(txtStreetAddress)
-                                    .addComponent(txtPostalCode, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(92, 92, 92)
-                                .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel5)
-                                    .addComponent(jLabel6)
-                                    .addComponent(jLabel4)))
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3))
-                        .addGap(18, 18, 18)
-                        .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtCity, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE)
-                            .addComponent(txtStateProvince)
-                            .addComponent(cbCountryId, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addComponent(btnGetAll)
-                    .addGroup(jInternalFrame1Layout.createSequentialGroup()
-                        .addComponent(jLabel9)
-                        .addGap(55, 55, 55)
-                        .addComponent(txtInput, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel8)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnSearch)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnGetById, javax.swing.GroupLayout.PREFERRED_SIZE, 98, Short.MAX_VALUE)))
-                .addContainerGap(55, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jInternalFrame1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(309, 309, 309))
+            .addGap(0, 759, Short.MAX_VALUE)
         );
         jInternalFrame1Layout.setVerticalGroup(
             jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jInternalFrame1Layout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(txtLocationId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4)
-                    .addComponent(txtCity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(txtStreetAddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5)
-                    .addComponent(txtStateProvince, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(txtPostalCode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6)
-                    .addComponent(cbCountryId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(32, 32, 32)
-                .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn_Insert)
-                    .addComponent(btn_Update)
-                    .addComponent(btn_Delete))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel9)
-                    .addComponent(jLabel8)
-                    .addComponent(btnSearch)
-                    .addComponent(btnGetById))
-                .addGap(18, 18, 18)
-                .addComponent(btnGetAll)
-                .addGap(4, 4, 4)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(102, Short.MAX_VALUE))
+            .addGap(0, 572, Short.MAX_VALUE)
         );
 
         jMenu1.setText("File");
+        jMenu1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu1ActionPerformed(evt);
+            }
+        });
 
         jMenuItem1.setText("jMenuItem1");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
@@ -337,7 +103,7 @@ public class Coba extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jInternalFrame1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(201, Short.MAX_VALUE))
+                .addContainerGap(189, Short.MAX_VALUE))
         );
 
         pack();
@@ -345,117 +111,15 @@ public class Coba extends javax.swing.JFrame {
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         // TODO add your handling code here:
-//        LocationView l = new LocationView();
-//        this.jInternalFrame1.add(l);
-//        l.show();
+        LocationView l = new LocationView();
+        this.jInternalFrame1.add(l);
+        l.show();
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
-    private void btnGetAllActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGetAllActionPerformed
-        refresh();
-    }//GEN-LAST:event_btnGetAllActionPerformed
-
-    private void tblLocationAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_tblLocationAncestorAdded
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tblLocationAncestorAdded
-
-    private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
-        // TODO add your handling code here:
-        DefaultTableModel model = (DefaultTableModel) tblLocation.getModel();
-        List<Location> location = ilc.search(txtInput.getText());
-
-        model.setRowCount(0);
-        Object[] row = new Object[7];
-
-        for (int i = 0; i < location.size(); i++) {
-            row[0] = i + 1;
-            row[1] = location.get(i).getId();
-            row[2] = location.get(i).getAddress();
-            row[3] = location.get(i).getPostalCode();
-            row[4] = location.get(i).getCity();
-            row[5] = location.get(i).getStateProvince();
-            row[6] = location.get(i).getCountryId();
-            model.addRow(row);
-        }
-    }//GEN-LAST:event_btnSearchActionPerformed
-
-    private void txtInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtInputActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtInputActionPerformed
-
-    private void btn_DeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_DeleteActionPerformed
-        // TODO add your handling code here:
-        ilc.delete(txtLocationId.getText());
-        refresh();
-    }//GEN-LAST:event_btn_DeleteActionPerformed
-
-    private void btn_UpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_UpdateActionPerformed
-        // TODO add your handling code here:
-        ilc.update(txtLocationId.getText(), txtStreetAddress.getText(), txtPostalCode.getText(), txtCity.getText(),
-                txtStateProvince.getText(), cbCountryId.getSelectedItem().toString());
-        refresh();
-    }//GEN-LAST:event_btn_UpdateActionPerformed
-
-    private void btn_InsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_InsertActionPerformed
-        // TODO add your handling code here:
-        ilc.insert(txtLocationId.getText(), txtStreetAddress.getText(), txtPostalCode.getText(), txtCity.getText(),
-                txtStateProvince.getText(), cbCountryId.getSelectedItem().toString());
-        refresh();
-    }//GEN-LAST:event_btn_InsertActionPerformed
-
-    private void txtCityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCityActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtCityActionPerformed
-
-    private void btnGetByIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGetByIdActionPerformed
-        // TODO add your handling code here:
-        DefaultTableModel model = (DefaultTableModel) tblLocation.getModel();
-        List<Location> location = ilc.getById(txtInput.getText());
-
-        model.setRowCount(0);
-        Object[] row = new Object[7];
-
-        for (int i = 0; i < location.size(); i++) {
-            row[0] = i + 1;
-            row[1] = location.get(i).getId();
-            row[2] = location.get(i).getAddress();
-            row[3] = location.get(i).getPostalCode();
-            row[4] = location.get(i).getCity();
-            row[5] = location.get(i).getStateProvince();
-            row[6] = location.get(i).getCountryId();
-            model.addRow(row);
-        }
-    }//GEN-LAST:event_btnGetByIdActionPerformed
-
-    private void tblLocationMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblLocationMouseClicked
-        DefaultTableModel model = (DefaultTableModel) tblLocation.getModel();
-        ListSelectionModel rowSelMod = tblLocation.getSelectionModel();
-
-        int i = tblLocation.getSelectedRow();
-        // refresh
-        txtLocationId.setText("");
-        txtStreetAddress.setText("");
-        txtPostalCode.setText("");
-        txtCity.setText("");
-        txtStateProvince.setText("");
-        cbCountryId.setSelectedItem("");
-        
-        //field
-        txtLocationId.setEditable(false);
-        txtLocationId.setText(model.getValueAt(i, 1).toString());
-        txtStreetAddress.setText(model.getValueAt(i, 2).toString());
-        txtPostalCode.setText(model.getValueAt(i, 3).toString());
-        txtCity.setText(model.getValueAt(i, 4).toString());
-        cbCountryId.setSelectedItem(model.getValueAt(i, 6).toString());
-        
-        txtStateProvince.setText(model.getValueAt(i, 5).toString());
-
-
-    }//GEN-LAST:event_tblLocationMouseClicked
-
-    private void cbCountryIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbCountryIdActionPerformed
+    private void jMenu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1ActionPerformed
         // TODO add your handling code here:
         
-    }//GEN-LAST:event_cbCountryIdActionPerformed
+    }//GEN-LAST:event_jMenu1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -493,34 +157,10 @@ public class Coba extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnGetAll;
-    private javax.swing.JButton btnGetById;
-    private javax.swing.JButton btnSearch;
-    private javax.swing.JButton btn_Delete;
-    private javax.swing.JButton btn_Insert;
-    private javax.swing.JButton btn_Update;
-    private javax.swing.JComboBox<String> cbCountryId;
     private javax.swing.JInternalFrame jInternalFrame1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable tblLocation;
-    private javax.swing.JTextField txtCity;
-    private javax.swing.JTextField txtInput;
-    private javax.swing.JTextField txtLocationId;
-    private javax.swing.JTextField txtPostalCode;
-    private javax.swing.JTextField txtStateProvince;
-    private javax.swing.JTextField txtStreetAddress;
     // End of variables declaration//GEN-END:variables
 }
