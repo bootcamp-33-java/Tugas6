@@ -43,11 +43,9 @@ public class DepartmentView extends javax.swing.JFrame {
         model.addColumn("Location id");
 
         //set value combobox
-        cbxManagerId.addItem("Select");
         for (Employee e : iec.getAll()) {
             cbxManagerId.addItem(String.valueOf(e.getManagerID()));
         }
-        cbxLocationId.addItem("Select");
         for (Location l : ilc.getAll()) {
             cbxLocationId.addItem(String.valueOf(l.getLocid()));
         }
