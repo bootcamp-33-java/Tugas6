@@ -6,13 +6,11 @@
 package controllers;
 
 import daos.DepartmentDAO;
-import daos.LocationDAO;
 import icontrollers.IDepartmentController;
 import idaos.IDepartmentDAO;
 import java.sql.Connection;
 import java.util.List;
 import models.Department;
-import models.Location;
 
 /**
  *
@@ -32,8 +30,8 @@ public class DepartmentController implements IDepartmentController {
     }
 
     @Override
-    public List<Department> getById(int Id) {
-        return iddao.getById(Id);
+    public List<Department> getById(String Id) {
+        return iddao.getById(Integer.parseInt(Id));
     }
 
     @Override
@@ -44,7 +42,7 @@ public class DepartmentController implements IDepartmentController {
     @Override
     public String insert(String id, String name, String managerId, String locationId) {
         String result = "";
-        Department department = new Department(Integer.parseInt(id), name, Integer.parseInt(managerId), locationId);
+        Department department = new Department(Integer.parseInt(id), name, Integer.parseInt(managerId), Integer.parseInt(locationId));
         if (iddao.insert(department)) {
             result = "Data berhasil ditambah";
         } else {
@@ -56,7 +54,7 @@ public class DepartmentController implements IDepartmentController {
     @Override
     public String update(String id, String name, String managerId, String locationId) {
         String result = "";
-        Department department = new Department(Integer.parseInt(id), name, Integer.parseInt(managerId), locationId);
+        Department department = new Department(Integer.parseInt(id), name, Integer.parseInt(managerId), Integer.parseInt(locationId));
         if (iddao.update(department)) {
             result = "Data berhasil diupdate";
         } else {
@@ -75,6 +73,10 @@ public class DepartmentController implements IDepartmentController {
         }
         return result;
     }
+
+    @Override
+    public List<Department> getByName(String name) {
+return iddao.getByName(name);    }
 
     
 }

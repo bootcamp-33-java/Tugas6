@@ -14,13 +14,13 @@ public class Department {
     private int id;
     private String name;
     private int managerId;
-    private String locationId;
+    private int locationId;
     
     public Department() {
 
     }
 
-    public Department(int id, String name, int managerId, String locationId) {
+    public Department(int id, String name, int managerId, int locationId) {
         this.id = id;
         this.name = name;
         this.managerId = managerId;
@@ -52,11 +52,11 @@ public class Department {
         this.managerId = managerId;
     }
 
-    public String getLocationId() {
+    public int getLocationId() {
         return locationId;
     }
 
-    public void setLocationId(String locationId) {
+    public void setLocationId(int locationId) {
         this.locationId = locationId;
     }
     

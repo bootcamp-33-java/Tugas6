@@ -26,7 +26,7 @@ public class LocationDAO implements ILocationDAO{
 
     @Override
     public List<Location> getAll() {
-        List<Location> listLocation = new ArrayList<Location>();
+        List<Location> listLocation = new ArrayList<>();
         String query = "SELECT * FROM LOCATIONS";
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(query);
@@ -50,7 +50,7 @@ public class LocationDAO implements ILocationDAO{
 
     @Override
     public List<Location> getLocid(int locid) {
-      List<Location> listLocation = new ArrayList<Location>();
+      List<Location> listLocation = new ArrayList<>();
         String query = "SELECT * FROM LOCATIONS WHERE LOCATION_ID = ?";
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(query);

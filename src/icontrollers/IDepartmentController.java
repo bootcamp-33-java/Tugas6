@@ -15,10 +15,10 @@ import models.Department;
 public interface IDepartmentController {
     
     public List<Department> getAll();
-    public List<Department> getById(int Id);
+    public List<Department> getById(String Id);
     public List<Department> search(String Key);
     public String insert(String id, String name, String managerId, String locationId);
     public String update(String id, String name, String managerId, String locationId);
     public String delete(String id);
-    
+    public List<Department> getByName(String name);
 }

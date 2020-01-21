@@ -8,7 +8,6 @@ package tools;
 import controllers.DepartmentController;
 import icontrollers.IDepartmentController;
 import models.Department;
-import models.Location;
 
 /**
  *
@@ -34,7 +33,7 @@ public class OJDBCDepartment {
     }
 
     public void getById() {
-        for (Department department : iddao.getById(10)) {
+        for (Department department : iddao.getById("10")) {
             System.out.println(department.getId());
             System.out.println(department.getName());
             System.out.println(department.getManagerId());
