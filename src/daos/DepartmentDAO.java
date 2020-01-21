@@ -58,8 +58,6 @@ public class DepartmentDAO implements IDepartmentDAO {
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {//memeriksa apakah 
                 Department d = new Department(resultSet.getInt(1), resultSet.getString(2), resultSet.getInt(3), resultSet.getInt(4));
-                //r.setId(resultSet.getInt(1));
-                //r.setName(resultSet.getString(2));
                 listDepartment.add(d);
             }
         } catch (SQLException e) {
@@ -71,19 +69,18 @@ public class DepartmentDAO implements IDepartmentDAO {
     @Override
     public List<Department> search(String key) {
         List<Department> listDepartment = new ArrayList<>();
-        String query = "SELECT * FROM DEPARTMENTS WHERE DEPARTMENT_ID LIKE(?) OR DEPARTMENT_NAME (?) ORDER BY DEPARTMENT_ID ASC";
+        String query = "SELECT * FROM DEPARTMENTS WHERE DEPARTMENT_ID LIKE ? OR DEPARTMENT_NAME LIKE ?";
         try {
+            key = "'%"+key+"%'";
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, key);
-            preparedStatement.setString(2, key);
             ResultSet resultSet = preparedStatement.executeQuery();
-            while (resultSet.next()) {
+            while (resultSet.next()) {//memeriksa apakah 
                 Department d = new Department(resultSet.getInt(1), resultSet.getString(2), resultSet.getInt(3), resultSet.getInt(4));
                 listDepartment.add(d);
             }
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
-            e.printStackTrace();
+            e.getStackTrace();
         }
         return listDepartment;
     }
@@ -143,7 +140,7 @@ public class DepartmentDAO implements IDepartmentDAO {
 
     @Override
     public List<Department> getByName(String name) {
-List<Department> listDepartment = new ArrayList<>();
+        List<Department> listDepartment = new ArrayList<>();
         String query = "SELECT * FROM DEPARTMENTS WHERE department_name = ?";
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(query);
@@ -156,6 +153,7 @@ List<Department> listDepartment = new ArrayList<>();
         } catch (SQLException e) {
             e.getStackTrace();
         }
-        return listDepartment;    }
+        return listDepartment;
+    }
 
 }

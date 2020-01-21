@@ -30,13 +30,13 @@ public class DepartmentController implements IDepartmentController {
     }
 
     @Override
-    public List<Department> getById(String Id) {
-        return iddao.getById(Integer.parseInt(Id));
+    public List<Department> getById(String id) {
+        return iddao.getById(Integer.parseInt(id));
     }
 
     @Override
-    public List<Department> search(String Key) {
-        return iddao.search(Key);
+    public List<Department> search(String key) {
+        return iddao.search(key);
     }
 
     @Override
