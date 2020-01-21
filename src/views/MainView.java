@@ -151,15 +151,15 @@ public class MainView extends javax.swing.JFrame {
     }//GEN-LAST:event_miCountryActionPerformed
 
     private void miRegionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miRegionActionPerformed
-//        RegionView regionView = new RegionView();
-//        this.jiMainView.add(regionView);
-//        regionView.show();
+        RegionView regionView = new RegionView();
+        this.jiMainView.add(regionView);
+        regionView.show();
     }//GEN-LAST:event_miRegionActionPerformed
 
     private void miLocationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miLocationActionPerformed
-                LocationView locationView = new LocationView();
-        this.jiMainView.add(locationView);
-        locationView.show();
+//                LocationView locationView = new LocationView();
+//        this.jiMainView.add(locationView);
+//        locationView.show();
     }//GEN-LAST:event_miLocationActionPerformed
 
     private void miJobActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miJobActionPerformed
