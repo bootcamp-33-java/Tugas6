@@ -28,7 +28,7 @@ public class EmployeeDAO implements IEmployeeDAO{
     @Override
     public List<Employee> getAll() {
         List<Employee> listEmployees = new ArrayList<>();
-        String query = "SELECT * FROM EMPLOYEES ORDER BY EMPLOYEE_ID 1";
+        String query = "SELECT * FROM EMPLOYEES ORDER BY EMPLOYEE_ID";
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -103,7 +103,7 @@ public class EmployeeDAO implements IEmployeeDAO{
         String query = "SELECT * FROM EMPLOYEES WHERE FIRST_NAME LIKE ? OR LAST_NAME LIKE ? "
                 + "OR EMPLOYEE_ID LIKE ? OR EMAIL LIKE ? OR PHONE_NUMBER LIKE ? OR HIRE_DATE LIKE ? "
                 + "OR JOB_ID LIKE ? OR SALARY LIKE ? OR COMMISSION_PCT LIKE ? OR MANAGER_ID LIKE ? "
-                + "OR DEPARTMENT_ID LIKE ? ORDER BY EMPLOYEE_ID 1";
+                + "OR DEPARTMENT_ID LIKE ? ORDER BY EMPLOYEE_ID ";
         try {
             key = "%" + key + "%";
             PreparedStatement preparedStatement = connection.prepareStatement(query);
