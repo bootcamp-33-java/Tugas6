@@ -27,4 +27,6 @@ public interface IRegionDAO {
     public boolean update(Region r);
 
     public boolean delete(int id);
+    
+    public List<Region> getData(int id, String key);
 }

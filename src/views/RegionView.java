@@ -256,19 +256,17 @@ public class RegionView extends javax.swing.JInternalFrame {
     private void btnSearchMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSearchMouseClicked
 
         model.setRowCount(0);
-        List<Region> act2 = irc.search(txtSearch.getText());
-        Object[] row = new Object[3];
-        List<Region> regions = new ArrayList<>();
-        regions = irc.search(txtSearch.getText());
+       
+        List<Region> regions =irc.search(txtSearch.getText());
 
-        int count = 0;
-
-        for (Region e : irc.search(txtSearch.getText())) {
-            row[0] = count + 1;
-            row[1] = regions.get(count).getId();
-            row[2] = regions.get(count).getName();
+       
+Object[] row=new Object[3];
+        for (int i=0;i<regions.size();i++) {
+            row[0] = i + 1;
+            row[1] = regions.get(i).getId();
+            row[2] = regions.get(i).getName();
             model.addRow(row);
-            count = count + 1;
+         
 //            refresh();
 //        List<Region> act2 = irc.search(txtSearch.getText());
 ////        jTable2.add(act2);

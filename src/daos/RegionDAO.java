@@ -167,5 +167,33 @@ public class RegionDAO implements IRegionDAO {
         }
         return result;
     }
+    
+    @Override
+public List<Region> getData(int id, String key) {
+        String query = (id==0 && key.equals("")) ? "SELECT * FROM REGIONS"
+                : (key.equals(""))
+                ? "SELECT * FROM REGIONS WHERE region_id = ?"
+                : "SELECT * FROM REGIONS WHERE REGEXP_LIKE(region_name,?,'i') OR REGEXP_LIKE(region_id,?,'i')";
 
+        List<Region> regions = new ArrayList();
+
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            if (key.equals("") && 0!=id) {
+                preparedStatement.setInt(1, id);
+            } else if  (!key.equals("") && 0==id) {
+                preparedStatement.setString(1, key);
+                preparedStatement.setString(2, key);
+            }
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                Region r = new Region(resultSet.getInt(1), resultSet.getString(2));
+                regions.add(r);
+            }
+        } catch (SQLException e) {
+            e.getStackTrace();
+        }
+
+        return regions;
+    }
 }
