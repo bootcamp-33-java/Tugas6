@@ -17,6 +17,8 @@ import models.Employee;
  *
  * @author Bagus Widyantoro Putro
  */
+
+//fikri
 public class EmployeeDAO implements IEmployeeDAO {
 
     private Connection connection;
