@@ -24,5 +24,7 @@ public interface ILocationController {
     
     public String update (String id, String address, String postalCode, String city, String stateProvince, String countryId);
     
+    public String save (String id, String address, String postalCode, String city, String stateProvince, String countryId);
+    
     public String delete (String id);
 }

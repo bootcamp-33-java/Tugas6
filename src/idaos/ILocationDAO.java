@@ -23,6 +23,8 @@ public interface ILocationDAO {
     public boolean insert(Location l);
 
     public boolean update(Location l);
+    
+    public boolean save(Location l);
 
     public boolean delete(int id);
 }

@@ -64,6 +64,17 @@ public class LocationController implements ILocationController {
         }
         return result;
     }
+    
+    public String save(String id, String address, String postal_code, String city, String stateProvince, String countryId) {
+        String result = "";
+        Location location = new Location(Integer.parseInt(id), address, postal_code, city, stateProvince, countryId);
+        if (ildao.save(location)) {
+            result = "Data berhasil disimpan";
+        } else {
+            result = "Maaf data gagal disimpan";
+        }
+        return result;
+    }
 
     @Override
     public String delete(String id) {
