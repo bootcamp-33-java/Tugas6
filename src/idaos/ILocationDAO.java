@@ -19,6 +19,8 @@ public interface ILocationDAO {
     public List<Location> getById(int id);
 
     public List<Location> search(String key);
+    
+    public List<Location> getData(int id, String key);
 
     public boolean insert(Location l);
 

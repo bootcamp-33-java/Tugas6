@@ -20,6 +20,8 @@ public interface ILocationController {
     
     public List<Location> search (String key);
     
+    public List<Location> getData(int id, String key);
+    
     public String insert (String id, String address, String postalCode, String city, String stateProvince, String countryId);
     
     public String update (String id, String address, String postalCode, String city, String stateProvince, String countryId);

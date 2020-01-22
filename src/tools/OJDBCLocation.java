@@ -70,6 +70,18 @@ public class OJDBCLocation {
         Location location = new Location(9997, "Indo", "400", "a", "b", "IT");
         System.out.println(ildao.save(location));
     }
+    
+    public void getData(){
+    
+        for (Location l : ildao.getData(0, "b")) {
+            System.out.println(l.getId());
+            System.out.println(l.getAddress());
+            System.out.println(l.getPostalCode());
+            System.out.println(l.getCity());
+            System.out.println(l.getStateProvince());
+            System.out.println(l.getCountryId());
+        }
+}
 
     public static void main(String[] args) {
         OJDBCLocation testing = new OJDBCLocation();
@@ -81,5 +93,6 @@ public class OJDBCLocation {
 //        testing.delete(); //pass
 //        testing.update(); //pass
 //        testing.save(); //pass
+        testing.getData(); //pass
     }
 }

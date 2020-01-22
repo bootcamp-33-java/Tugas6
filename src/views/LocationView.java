@@ -414,6 +414,7 @@ public class LocationView extends javax.swing.JInternalFrame {
             row[6] = location.get(i).getCountryId();
             model.addRow(row);
         }
+        
     }//GEN-LAST:event_btnGetByIdActionPerformed
 
     private void txtCityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCityActionPerformed
