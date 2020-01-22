@@ -6,6 +6,7 @@
 package controllers;
 
 import daos.EmployeeDAO;
+import daos.RegionDAO;
 import icontrollers.IEmployeeController;
 import idaos.IEmployeeDAO;
 import java.sql.Connection;
@@ -28,6 +29,16 @@ public class EmployeeController implements IEmployeeController {
     public List<Employee> getAll() {
         return irdao.getAll();
     }
+    
+    @Override
+    public List<Employee> getJobId() {
+        return irdao.getJobId();
+    }
+    
+    @Override
+    public List<Employee> getDepartmentId() {
+        return irdao.getDepartmentId();
+    }
 
     @Override
     public List<Employee> getById(String id) {
@@ -40,11 +51,11 @@ public class EmployeeController implements IEmployeeController {
     }
 
     @Override
-    public String insert(String id, String firstName, String lastName, String email, String phoneNumber, 
+    public String insert(String id, String firstName, String lastName, String email, String phoneNumber,
             String hireDate, String jobId, String salary, String commissionPct, String managerId, String departmentId) {
         String result = "";
-        Employee employees = new Employee(Integer.parseInt(id), firstName, lastName, email, phoneNumber, 
-                hireDate, jobId, Integer.parseInt(salary), Float.parseFloat(commissionPct), 
+        Employee employees = new Employee(Integer.parseInt(id), firstName, lastName, email, phoneNumber,
+                hireDate, jobId, Integer.parseInt(salary), Float.parseFloat(commissionPct),
                 Integer.parseInt(managerId), Integer.parseInt(departmentId));
         if (irdao.insert(employees)) {
             result = "Data berhasil disimpan";
@@ -55,11 +66,11 @@ public class EmployeeController implements IEmployeeController {
     }
 
     @Override
-    public String update(String id, String firstName, String lastName, String email, String phoneNumber, 
-            String hireDate, String jobId, String salary, String commissionPct, String managerId, String departmentId)  {
+    public String update(String id, String firstName, String lastName, String email, String phoneNumber,
+            String hireDate, String jobId, String salary, String commissionPct, String managerId, String departmentId) {
         String result = "";
-        Employee employees = new Employee(Integer.parseInt(id), firstName, lastName, email, phoneNumber, 
-                hireDate, jobId, Integer.parseInt(salary), Float.parseFloat(commissionPct), 
+        Employee employees = new Employee(Integer.parseInt(id), firstName, lastName, email, phoneNumber,
+                hireDate, jobId, Integer.parseInt(salary), Float.parseFloat(commissionPct),
                 Integer.parseInt(managerId), Integer.parseInt(departmentId));
         if (irdao.update(employees)) {
             result = "Data berhasil diupdate";
@@ -79,4 +90,5 @@ public class EmployeeController implements IEmployeeController {
         }
         return result;
     }
+
 }
