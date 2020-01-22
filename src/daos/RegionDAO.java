@@ -4,6 +4,8 @@ import idaos.IRegionDAO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.AbstractList;
 import java.util.ArrayList;
 import java.util.List;
 import models.Region;
@@ -66,23 +68,50 @@ public class RegionDAO implements IRegionDAO {
     @Override
     public List<Region> search(String key) {
         List<Region> listRegion = new ArrayList<Region>();
-            String query = "SELECT * FROM REGIONS WHERE REGEXP_LIKE(region_name,?,'i') OR REGEXP_LIKE(region_id,?,'i')";
+        String query = "SELECT * FROM REGIONS WHERE REGEXP_LIKE(region_name,?,'i') OR REGEXP_LIKE(region_id,?,'i')";
 //        "SELECT * FROM REGIONS WHERE REGEXP_LIKE(region_name,?,'i') OR REGEXP_LIKE(region_id,?,'i')"
-        try{
-        PreparedStatement preparedStatement = connection.prepareStatement(query);
-        preparedStatement.setString(1,key);
-        preparedStatement.setString(2,key);
-        ResultSet resultSet=preparedStatement.executeQuery();
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, key);
+            preparedStatement.setString(2, key);
+            ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 Region r = new Region(resultSet.getInt(1), resultSet.getString(2));
                 listRegion.add(r);
-                }
-        }catch (Exception e){
-        e.getStackTrace();
+            }
+        } catch (Exception e) {
+            e.getStackTrace();
         }
         return listRegion;
     }
-   
+
+    public List<Region> getData(int id, String key) {
+        String query = (id==0 && key.equals("")) ? "SELECT * FROM REGIONS"
+                : (key.equals(""))
+                ? "SELECT * FROM REGIONS WHERE region_id = ?"
+                : "SELECT * FROM REGIONS WHERE REGEXP_LIKE(region_name,?,'i') OR REGEXP_LIKE(region_id,?,'i')";
+
+        List<Region> regions = new ArrayList();
+
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            if (key.equals("") && 0!=id) {
+                preparedStatement.setInt(1, id);
+            } else if  (!key.equals("") && 0==id) {
+                preparedStatement.setString(1, key);
+                preparedStatement.setString(2, key);
+            }
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                Region r = new Region(resultSet.getInt(1), resultSet.getString(2));
+                regions.add(r);
+            }
+        } catch (SQLException e) {
+            e.getStackTrace();
+        }
+
+        return regions;
+    }
 
     @Override
     public boolean insert(Region r) {
@@ -105,7 +134,7 @@ public class RegionDAO implements IRegionDAO {
         boolean result = false;
         String query = "UPDATE REGIONS SET  region_name=? WHERE region_id=?";
         try {
-            PreparedStatement preparedStatement  = connection.prepareStatement(query);
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, r.getName());
             preparedStatement.setInt(2, r.getId());
             preparedStatement.executeQuery();
@@ -123,7 +152,7 @@ public class RegionDAO implements IRegionDAO {
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setInt(1, id);
-             preparedStatement.executeQuery();
+            preparedStatement.executeQuery();
             result = true;
         } catch (Exception e) {
             e.printStackTrace();

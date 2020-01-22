@@ -6,10 +6,12 @@
 package tools;
 
 import daos.CountryDAO;
+import daos.RegionDAO;
 //import daos.RegionDAO;
 import idaos.ICountryDAO;
 //import idaos.IRegionDAO;
 import models.Country;
+import models.Region;
 //import models.Region;
 
 public class OJDBC {
@@ -29,10 +31,12 @@ public class OJDBC {
         DBConnection connection = new DBConnection();
         System.out.println(connection.getConnection());
 //        GetAll Regions-----------
-//         IRegionDAO irdao = new RegionDAO(connection.getConnection());
-//        for (Region region : irdao.getAll()) {
-//            System.out.println(region.getId());
-//            System.out.println(region.getName());
+        int i;
+        RegionDAO irdao = new RegionDAO(connection.getConnection());
+        for (Region region : irdao.getData(0, "b")) {
+            System.out.println(region.getId());
+            System.out.println(region.getName());
+        }
 //          GetById Regions----------
 //        IRegionDAO irdao = new RegionDAO(connection.getConnection());
 //        for (Region region : irdao.getById(2)) {
@@ -58,7 +62,6 @@ public class OJDBC {
 //        System.out.println(irdao.delete(31));
 //----------------------------------------------------------------------------
 
-
 //        GetAll Countries-----------
 //        ICountryDAO icdao = new CountryDAO(connection.getConnection());
 //        for (Country country : icdao.getAll()) {
@@ -71,7 +74,6 @@ public class OJDBC {
 //            System.out.println(country.getCid());
 //            System.out.println(country.getRid());
 //            System.out.println(country.getName());
-
 //          Search Countries-----------
 //        ICountryDAO icdao = new CountryDAO(connection.getConnection());
 //        for (Country country : icdao.search("A")) {
@@ -90,7 +92,5 @@ public class OJDBC {
 //           Delete Countries-----------
 //        IRegionDAO irdao = new RegionDAO(connection.getConnection());
 //        System.out.println(irdao.delete(31));
-        }
     }
-
-
+}

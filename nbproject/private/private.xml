@@ -3,8 +3,15 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/D:/Bootcamp%20Mii/project%20pertama%20sama%20sama/Tugas6/src/controllers/CountryController.java</file>
+            <file>file:/D:/Bootcamp%20Mii/project%20pertama%20sama%20sama/Tugas6/src/idaos/ICountryDAO.java</file>
+            <file>file:/D:/Bootcamp%20Mii/project%20pertama%20sama%20sama/Tugas6/src/models/Country.java</file>
             <file>file:/D:/Bootcamp%20Mii/project%20pertama%20sama%20sama/Tugas6/src/daos/CountryDAO.java</file>
-            <file>file:/D:/Bootcamp%20Mii/project%20pertama%20sama%20sama/Tugas6/src/tools/DBConnection.java</file>
+            <file>file:/D:/Bootcamp%20Mii/project%20pertama%20sama%20sama/Tugas6/src/daos/LocationDAO.java</file>
+            <file>file:/D:/Bootcamp%20Mii/project%20pertama%20sama%20sama/Tugas6/src/views/DepartmentView.java</file>
+            <file>file:/D:/Bootcamp%20Mii/project%20pertama%20sama%20sama/Tugas6/test/JUnitTestRegion/JUnitTestCountry.java</file>
+            <file>file:/D:/Bootcamp%20Mii/project%20pertama%20sama%20sama/Tugas6/src/icontrollers/ICountryController.java</file>
+            <file>file:/D:/Bootcamp%20Mii/project%20pertama%20sama%20sama/Tugas6/src/views/EmployeeView.java</file>
         </group>
     </open-files>
 </project-private>
