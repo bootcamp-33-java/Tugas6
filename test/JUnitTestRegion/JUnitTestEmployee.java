@@ -45,7 +45,7 @@ public class JUnitTestEmployee {
 
     @Test
     public void testInsert() {
-        iec.insert("216", "SidulLee", "BoyLee", "BOYGMAILLLee", "532628", "10/10/2002", "AC_ACCOUNT", "8300", "0.2", "205", "110");
+        iec.save("216", "SidulLee", "BoyLee", "BOYGMAILLLee", "532628", "10/10/2002", "AC_ACCOUNT", "8300", "0.2", "205", "110");
         //Employee employee = new Employee(900, "gianny", "luigi", "a@mail.com", "098970", new Date("12/01/2019"), new BigDecimal(23), new BigDecimal(0.2), new Department(new Short("90")), new Employee(100), new Job("AD_PRES"));   
         List<Employee> m = iec.getById("216");
        
@@ -64,7 +64,7 @@ public class JUnitTestEmployee {
 
 //    @Test
 //    public void testUpdate() {
-//        iec.update("207", "Sidul", "Boy", "BOYGMAIL", "", "06/07/2002", "AC_ACCOUNT", 8300, 0.2f, 205, 110);
+//        iec.save("207", "Sidul", "Boy", "BOYGMAIL", "", "06/07/2002", "AC_ACCOUNT", 8300, 0.2f, 205, 110);
 //        List<Employee> m = iec.getById("207");
 //        Assert.assertEquals("207", m.get(0).getEmployeeID());
 //        Assert.assertEquals("Sidul", m.get(0).getFirstName());
