@@ -21,6 +21,8 @@ public interface IRegionDAO {
     public List<Region> search(String key);
 
     public boolean insert(Region r);
+    
+    public boolean save(Region r);
 
     public boolean update(Region r);
 

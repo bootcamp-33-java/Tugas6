@@ -6,10 +6,12 @@
 package tools;
 
 import daos.CountryDAO;
+import daos.RegionDAO;
 //import daos.RegionDAO;
 import idaos.ICountryDAO;
 //import idaos.IRegionDAO;
 import models.Country;
+import models.Region;
 //import models.Region;
 
 public class OJDBC {
@@ -45,10 +47,10 @@ public class OJDBC {
 //           System.out.println(region.getId());
 //            System.out.println(region.getName());
 //          Insert Regions-----------
-//                IRegionDAO irdao = new RegionDAO(connection.getConnection());
-//            Region region =new Region(32,"Jogjaku"); 
-//            System.out.println(irdao.insert(region));
-//            System.out.println(region.getName());
+                RegionDAO irdao = new RegionDAO(connection.getConnection());
+            Region region =new Region(99,"semarang"); 
+            System.out.println(irdao.save(region));
+            System.out.println(region.getName());
 //          Update Regions------------
 //                IRegionDAO irdao = new RegionDAO(connection.getConnection());
 //            Region region =new Region(31,"Salatiga"); 

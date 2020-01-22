@@ -125,7 +125,7 @@ public class EmployeeView extends javax.swing.JInternalFrame {
         cbJobId = new javax.swing.JComboBox();
         cbManagerId = new javax.swing.JComboBox();
         cbDepartmentId = new javax.swing.JComboBox();
-        btnInsert1 = new javax.swing.JButton();
+        btnReset = new javax.swing.JButton();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -139,6 +139,10 @@ public class EmployeeView extends javax.swing.JInternalFrame {
             }
         ));
         jScrollPane1.setViewportView(jTable1);
+
+        setClosable(true);
+        setIconifiable(true);
+        setMaximizable(true);
 
         jLabel1.setText("Employee ID");
 
@@ -233,10 +237,10 @@ public class EmployeeView extends javax.swing.JInternalFrame {
             }
         });
 
-        btnInsert1.setText("RESET");
-        btnInsert1.addActionListener(new java.awt.event.ActionListener() {
+        btnReset.setText("RESET");
+        btnReset.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnInsert1ActionPerformed(evt);
+                btnResetActionPerformed(evt);
             }
         });
 
@@ -301,7 +305,7 @@ public class EmployeeView extends javax.swing.JInternalFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(btnSearch)
                                 .addGap(105, 105, 105)
-                                .addComponent(btnInsert1)
+                                .addComponent(btnReset)
                                 .addGap(71, 71, 71))))))
         );
         layout.setVerticalGroup(
@@ -373,7 +377,7 @@ public class EmployeeView extends javax.swing.JInternalFrame {
                             .addComponent(btnSearch)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(4, 4, 4)
-                        .addComponent(btnInsert1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnReset, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(36, 36, 36)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(144, 144, 144))
@@ -469,7 +473,8 @@ public class EmployeeView extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cbJobIdFocusGained
 
-    private void btnInsert1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsert1ActionPerformed
+    private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
+        txtId.setEditable(true);
         txtId.setText("");
         txtFirst.setText("");
         txtLast.setText("");
@@ -482,13 +487,13 @@ public class EmployeeView extends javax.swing.JInternalFrame {
         cbManagerId.setSelectedItem("");
         cbDepartmentId.setSelectedItem("");
         refresh();
-    }//GEN-LAST:event_btnInsert1ActionPerformed
+    }//GEN-LAST:event_btnResetActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnInsert;
-    private javax.swing.JButton btnInsert1;
+    private javax.swing.JButton btnReset;
     private javax.swing.JButton btnSearch;
     private javax.swing.JButton btnUpdate;
     private javax.swing.JComboBox cbDepartmentId;

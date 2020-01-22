@@ -69,4 +69,15 @@ public class RegionController implements IRegionController{
     }
     return result;
     }
+
+    @Override
+    public String save(String id, String name) {
+         String result ="";
+    Region region= new Region(Integer.parseInt(id), name);
+    if (irdao.save(region)) {
+        result= "Data Berhasil diperbarui";
+    } else {
+        result = "Maaf data gagal disimpan";
+    }
+    return result;}
 }
