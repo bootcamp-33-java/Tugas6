@@ -29,7 +29,7 @@ public class EmployeeView extends javax.swing.JInternalFrame {
     IEmployeeController iec = new EmployeeController(connection.getConnection());
     DefaultTableModel model;
 
-    public EmployeeView() {
+   public EmployeeView() {
         initComponents();
         PlaceHolder holder1 = new PlaceHolder(txtId, "ID");
         PlaceHolder holder2 = new PlaceHolder(txtFirst, "Nama Awal");
@@ -57,7 +57,7 @@ public class EmployeeView extends javax.swing.JInternalFrame {
     public void refresh() {
         model.setRowCount(0);
         Object[] row = new Object[12];
-        List<Employee> employee = new ArrayList<>();
+        List<Employee> employee = new ArrayList();
         employee = iec.getAll();
 
         for (int i = 0; i < employee.size(); i++) {
