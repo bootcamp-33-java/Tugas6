@@ -49,10 +49,10 @@ public class OJDBC {
 //           System.out.println(region.getId());
 //            System.out.println(region.getName());
 //          Insert Regions-----------
-                RegionDAO irdao = new RegionDAO(connection.getConnection());
-            Region region =new Region(99,"semarang"); 
-            System.out.println(irdao.save(region));
-            System.out.println(region.getName());
+//                RegionDAO irdao = new RegionDAO(connection.getConnection());
+//            Region region =new Region(99,"semarang"); 
+//            System.out.println(irdao.save(region));
+//            System.out.println(region.getName());
 //          Update Regions------------
 //                IRegionDAO irdao = new RegionDAO(connection.getConnection());
 //            Region region =new Region(31,"Salatiga"); 
