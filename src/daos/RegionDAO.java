@@ -64,7 +64,7 @@ public class RegionDAO implements IRegionDAO {
 //        return listRegion;
 //    
 //    } 
-      
+
     @Override
     public List<Region> search(String key) {
         List<Region> listRegion = new ArrayList<Region>();
@@ -139,8 +139,8 @@ public class RegionDAO implements IRegionDAO {
     public boolean save(Region r) {
         boolean result = false;
         String query = (getById(r.getId()).isEmpty())
-                    ? "INSERT INTO REGIONS(region_name, region_id) VALUES (?,?)"
-                    : "UPDATE REGIONS SET region_name=? WHERE region_id=?";
+                ? "INSERT INTO REGIONS(region_name, region_id) VALUES (?,?)"
+                : "UPDATE REGIONS SET region_name=? WHERE region_id=?";
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, r.getName());
@@ -167,10 +167,10 @@ public class RegionDAO implements IRegionDAO {
         }
         return result;
     }
-    
+
     @Override
-public List<Region> getData(int id, String key) {
-        String query = (id==0 && key.equals("")) ? "SELECT * FROM REGIONS"
+    public List<Region> getData(int id, String key) {
+        String query = (id == 0 && key.equals("")) ? "SELECT * FROM REGIONS"
                 : (key.equals(""))
                 ? "SELECT * FROM REGIONS WHERE region_id = ?"
                 : "SELECT * FROM REGIONS WHERE REGEXP_LIKE(region_name,?,'i') OR REGEXP_LIKE(region_id,?,'i')";
@@ -179,9 +179,9 @@ public List<Region> getData(int id, String key) {
 
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(query);
-            if (key.equals("") && 0!=id) {
+            if (key.equals("") && 0 != id) {
                 preparedStatement.setInt(1, id);
-            } else if  (!key.equals("") && 0==id) {
+            } else if (!key.equals("") && 0 == id) {
                 preparedStatement.setString(1, key);
                 preparedStatement.setString(2, key);
             }

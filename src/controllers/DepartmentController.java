@@ -26,39 +26,28 @@ public class DepartmentController implements IDepartmentController {
 
     @Override
     public List<Department> getAll() {
-        return iddao.getAll();
+        return iddao.getData(0,"");
     }
 
     @Override
     public List<Department> getById(String id) {
-        return iddao.getById(Integer.parseInt(id));
+        return iddao.getData(Integer.parseInt(id),"");
     }
 
     @Override
     public List<Department> search(String key) {
-        return iddao.search(key);
+        return iddao.getData(0,key);
     }
 
-    @Override
-    public String insert(String id, String name, String managerId, String locationId) {
-        String result = "";
-        Department department = new Department(Integer.parseInt(id), name, Integer.parseInt(managerId), Integer.parseInt(locationId));
-        if (iddao.insert(department)) {
-            result = "Data berhasil ditambah";
-        } else {
-            result = "Maaf data gagal ditambah";
-        }
-        return result;
-    }
 
     @Override
-    public String update(String id, String name, String managerId, String locationId) {
+    public String save(String id, String name, String managerId, String locationId) {
         String result = "";
         Department department = new Department(Integer.parseInt(id), name, Integer.parseInt(managerId), Integer.parseInt(locationId));
-        if (iddao.update(department)) {
-            result = "Data berhasil diupdate";
+        if (iddao.save(department)) {
+            result = "Data Saved Successfull";
         } else {
-            result = "Maaf data gagal diupdate";
+            result = "Data Saved Failed";
         }
         return result;
     }
@@ -67,16 +56,15 @@ public class DepartmentController implements IDepartmentController {
     public String delete(String id) {
         String result = "";
         if (iddao.delete(Integer.parseInt(id))) {
-            result = "Data berhasil dihapus";
+            result = "Data Deleted Successfull";
         } else {
-            result = "Maaf data gagal dihapus";
+            result = "Data Deleted Failed";
         }
         return result;
     }
 
-    @Override
-    public List<Department> getByName(String name) {
-return iddao.getByName(name);    }
+
+
 
     
 }
