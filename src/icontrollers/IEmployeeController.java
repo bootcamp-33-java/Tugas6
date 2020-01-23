@@ -52,7 +52,4 @@ public interface IEmployeeController {
      */
     public String delete(String id);
     
-    public List<Employee> getJobId();
-    
-    public List<Employee> getDepartmentId();
 }

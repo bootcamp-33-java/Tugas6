@@ -31,16 +31,6 @@ public class EmployeeController implements IEmployeeController {
     }
 
     @Override
-    public List<Employee> getJobId() {
-        return irdao.getJobId();
-    }
-
-    @Override
-    public List<Employee> getDepartmentId() {
-        return irdao.getDepartmentId();
-    }
-
-    @Override
     public List<Employee> getById(String id) {
         return irdao.getData(Integer.parseInt(id),"");
     }

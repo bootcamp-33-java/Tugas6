@@ -6,14 +6,33 @@
 package views;
 
 import com.placeholder.PlaceHolder;
+import controllers.DepartmentController;
 import controllers.EmployeeController;
+import controllers.JobController;
+import icontrollers.IDepartmentController;
 import icontrollers.IEmployeeController;
+import icontrollers.IJobController;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import models.Department;
 import models.Employee;
+import models.Job;
+import net.sf.jasperreports.engine.JRDataSource;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
+import net.sf.jasperreports.view.JRViewer;
+import net.sf.jasperreports.view.JasperViewer;
 import tools.DBConnection;
 
 /**
@@ -27,6 +46,9 @@ public class EmployeeView extends javax.swing.JInternalFrame {
      */
     DBConnection connection = new DBConnection();
     IEmployeeController iec = new EmployeeController(connection.getConnection());
+    IJobController ijc = new JobController(connection.getConnection());
+    IDepartmentController idc = new DepartmentController(connection.getConnection());
+
     DefaultTableModel model;
 
     public EmployeeView() {
@@ -34,15 +56,15 @@ public class EmployeeView extends javax.swing.JInternalFrame {
         placenya();
         model = (DefaultTableModel) tblEmployee.getModel();
         refresh();
-        for (Employee e : iec.getJobId()) {
-            cbJobId.addItem(e.getJobID());
+        for (Job j : ijc.getAll()) {
+            cbJobId.addItem(j.getId());
         }
         for (Employee e : iec.getAll()) {
             cbManagerId.addItem(e.getId());
         }
 
-        for (Employee e : iec.getDepartmentId()) {
-            cbDepartmentId.addItem(String.valueOf(e.getDepartmentID()));
+        for (Department d : idc.getAll()) {
+            cbDepartmentId.addItem(d.getId());
         }
 
     }
@@ -145,6 +167,7 @@ public class EmployeeView extends javax.swing.JInternalFrame {
         cbDepartmentId = new javax.swing.JComboBox();
         btnReset = new javax.swing.JButton();
         jComboSelect = new javax.swing.JComboBox();
+        btnReport = new javax.swing.JButton();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -256,6 +279,13 @@ public class EmployeeView extends javax.swing.JInternalFrame {
             }
         });
 
+        btnReport.setText("Print Report");
+        btnReport.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReportActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -271,7 +301,9 @@ public class EmployeeView extends javax.swing.JInternalFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(jLabel12)
-                                .addGap(383, 383, 383))
+                                .addGap(292, 292, 292)
+                                .addComponent(btnReport)
+                                .addGap(28, 28, 28))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -322,7 +354,9 @@ public class EmployeeView extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addComponent(jLabel12)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel12)
+                    .addComponent(btnReport, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -363,7 +397,7 @@ public class EmployeeView extends javax.swing.JInternalFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtHire, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel6))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -507,9 +541,45 @@ public class EmployeeView extends javax.swing.JInternalFrame {
 
     }//GEN-LAST:event_jComboSelectActionPerformed
 
+    private void btnReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportActionPerformed
+
+        String reportSource = null;
+        String reportDest = null;
+        try {
+            reportSource = System.getProperty("user.dir") + "/src/reports/reportEmployees2.jrxml";
+            reportDest = System.getProperty("user.dir") + "/src/reports/reportEmployees2.report";
+
+            JasperReport jasperReport = JasperCompileManager.compileReport(reportSource);
+            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, null, connection.getConnection());
+            JasperExportManager.exportReportToPdfFile(jasperPrint, reportDest);
+            JasperViewer.viewReport(jasperPrint, false);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_btnReportActionPerformed
+
+//    private void Report() {
+//
+//        try {
+//            String reportSource = System.getProperty("user.dir") + "/src/reports/reportEmployees2.jrxml";
+//
+//            JasperDesign jd = JRXmlLoader.load("F:\\Net Beans\\Project\\Chit\\src\\Report\\report1.jrxml");
+//            JasperReport report = JasperCompileManager.compileReport(jd);
+//            JasperPrint jasperPrint = JasperFillManager.fillReport(report, null, dataSource);
+//            JRViewer viewer = new JRViewer(jasperPrint);
+//            Container c = getContentPane();
+//            c.setLayout(new BorderLayout());
+//            c.add(viewer);
+//            //  JasperViewer.viewReport(jasperPrint);  //this is for Mainframe Display Seprately
+//        } catch (JRException ex) {
+//            System.out.println(ex);
+//            Logger.getLogger(MemberReport.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDelete;
+    private javax.swing.JButton btnReport;
     private javax.swing.JButton btnReset;
     private javax.swing.JButton btnSave;
     private javax.swing.JComboBox cbDepartmentId;

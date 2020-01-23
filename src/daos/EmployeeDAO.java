@@ -111,42 +111,4 @@ public class EmployeeDAO implements IEmployeeDAO {
         }
         return result;
     }
-
-    @Override
-    public List<Employee> getJobId() { //buat combo box job id pada table jobs
-        List<Employee> listEmployees = new ArrayList<>();
-        String query = "SELECT JOB_ID FROM JOBS";
-        try {
-            PreparedStatement preparedStatement = connection.prepareStatement(query);
-            ResultSet resultSet = preparedStatement.executeQuery();
-            while (resultSet.next()) {
-                Employee r = new Employee(resultSet.getString(1));
-                listEmployees.add(r);
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return listEmployees;
-    }
-
-    @Override
-    public List<Employee> getDepartmentId() { //buat combo box department id pada table departments
-        List<Employee> listEmployees = new ArrayList<>();
-        String query = "SELECT department_id FROM departments";
-        try {
-            PreparedStatement preparedStatement = connection.prepareStatement(query);
-            ResultSet resultSet = preparedStatement.executeQuery();
-            while (resultSet.next()) {
-                Employee r = new Employee(resultSet.getInt(1));
-                listEmployees.add(r);
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return listEmployees;
-    }
 }

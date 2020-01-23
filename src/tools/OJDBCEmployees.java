@@ -5,9 +5,15 @@
  */
 package tools;
 
+import daos.DepartmentDAO;
 import daos.EmployeeDAO;
+import daos.JobDAO;
+import idaos.IDepartmentDAO;
 import idaos.IEmployeeDAO;
+import idaos.IJobDAO;
+import models.Department;
 import models.Employee;
+import models.Job;
 
 /**
  *
@@ -17,6 +23,8 @@ public class OJDBCEmployees {
 
     DBConnection connection = new DBConnection();
     IEmployeeDAO irdao = new EmployeeDAO(connection.getConnection());
+    IJobDAO ijdao = new JobDAO(connection.getConnection());
+    IDepartmentDAO iddao = new DepartmentDAO(connection.getConnection());
 
     public void getAll() {
 
@@ -36,14 +44,14 @@ public class OJDBCEmployees {
     }
 
     public void getJobId() {
-        for (Employee employee : irdao.getJobId()) {
-            System.out.println(employee.getJobID());
+        for (Job job : ijdao.getById("2")) {
+            System.out.println(job.getId());
         }
     }
     
     public void getDepartmentId() {
-        for (Employee employee : irdao.getDepartmentId()) {
-            System.out.println(employee.getDepartmentID());
+        for (Department department : iddao.getAll()) {
+            System.out.println(department.getId());
         }
     }
 
