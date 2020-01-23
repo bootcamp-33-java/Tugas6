@@ -38,8 +38,4 @@ public interface IEmployeeDAO {
      * @return 
      */
     public boolean delete(int r);
-    
-    public List<Employee> getJobId();
-    
-    public List<Employee> getDepartmentId();
 }
