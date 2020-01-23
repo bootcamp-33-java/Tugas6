@@ -13,18 +13,10 @@ import java.util.List;
  * @author Insane
  */
 public interface IDepartmentDAO {
-
-    public List<Department> getAll();
-
-    public List<Department> getById(int id);
+        
+    public List<Department> getData(int id, String key);
     
-    public List<Department> getByName(String name);
-
-    public List<Department> search(String key);
-
-    public boolean insert(Department d);
-
-    public boolean update(Department d);
+    public boolean save(Department d);
 
     public boolean delete(int id);
 

@@ -31,10 +31,12 @@ public class OJDBC {
         DBConnection connection = new DBConnection();
         System.out.println(connection.getConnection());
 //        GetAll Regions-----------
-//         IRegionDAO irdao = new RegionDAO(connection.getConnection());
-//        for (Region region : irdao.getAll()) {
-//            System.out.println(region.getId());
-//            System.out.println(region.getName());
+        int i;
+        RegionDAO irdao = new RegionDAO(connection.getConnection());
+        for (Region region : irdao.getData(0, "b")) {
+            System.out.println(region.getId());
+            System.out.println(region.getName());
+        }
 //          GetById Regions----------
 //        IRegionDAO irdao = new RegionDAO(connection.getConnection());
 //        for (Region region : irdao.getById(2)) {
@@ -47,10 +49,10 @@ public class OJDBC {
 //           System.out.println(region.getId());
 //            System.out.println(region.getName());
 //          Insert Regions-----------
-                RegionDAO irdao = new RegionDAO(connection.getConnection());
-            Region region =new Region(99,"semarang"); 
-            System.out.println(irdao.save(region));
-            System.out.println(region.getName());
+//                RegionDAO irdao = new RegionDAO(connection.getConnection());
+//            Region region =new Region(99,"semarang"); 
+//            System.out.println(irdao.save(region));
+//            System.out.println(region.getName());
 //          Update Regions------------
 //                IRegionDAO irdao = new RegionDAO(connection.getConnection());
 //            Region region =new Region(31,"Salatiga"); 
@@ -59,7 +61,6 @@ public class OJDBC {
 //        IRegionDAO irdao = new RegionDAO(connection.getConnection());
 //        System.out.println(irdao.delete(31));
 //----------------------------------------------------------------------------
-
 
 //        GetAll Countries-----------
 //        ICountryDAO icdao = new CountryDAO(connection.getConnection());
@@ -73,7 +74,6 @@ public class OJDBC {
 //            System.out.println(country.getCid());
 //            System.out.println(country.getRid());
 //            System.out.println(country.getName());
-
 //          Search Countries-----------
 //        ICountryDAO icdao = new CountryDAO(connection.getConnection());
 //        for (Country country : icdao.search("A")) {
@@ -92,7 +92,5 @@ public class OJDBC {
 //           Delete Countries-----------
 //        IRegionDAO irdao = new RegionDAO(connection.getConnection());
 //        System.out.println(irdao.delete(31));
-        }
     }
-
-
+}
