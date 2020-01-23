@@ -26,17 +26,23 @@ public class LocationController implements ILocationController {
 
     @Override
     public List<Location> getAll() {
-        return ildao.getAll();
+        return ildao.getData(0,"");
     }
 
     @Override
     public List<Location> getById(String id) {
-        return ildao.getById(Integer.parseInt(id));
+        return ildao.getData(Integer.parseInt(id),"");
     }
 
     @Override
     public List<Location> search(String key) {
-        return ildao.search(key);
+        return ildao.getData(0,key);
+    }
+    
+    @Override
+    public List<Location> getData(int id, String key) {
+//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return ildao.getData(id, key);
     }
 
     @Override
@@ -64,6 +70,17 @@ public class LocationController implements ILocationController {
         }
         return result;
     }
+    
+    public String save(String id, String address, String postal_code, String city, String stateProvince, String countryId) {
+        String result = "";
+        Location location = new Location(Integer.parseInt(id), address, postal_code, city, stateProvince, countryId);
+        if (ildao.save(location)) {
+            result = "Data berhasil disimpan";
+        } else {
+            result = "Maaf data gagal disimpan";
+        }
+        return result;
+    }
 
     @Override
     public String delete(String id) {
@@ -75,4 +92,6 @@ public class LocationController implements ILocationController {
         }
         return result;
     }
+
+    
 }

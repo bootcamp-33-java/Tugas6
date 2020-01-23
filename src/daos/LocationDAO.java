@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import models.Location;
 import idaos.ILocationDAO;
+import java.sql.SQLException;
 
 /**
  *
@@ -45,8 +46,8 @@ public class LocationDAO implements ILocationDAO {
 
                 listLocation.add(l);
             }
-        } catch (Exception e) {
-            e.getStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
         return listLocation;
     }
@@ -71,8 +72,8 @@ public class LocationDAO implements ILocationDAO {
 
                 listLocation.add(l);
             }
-        } catch (Exception e) {
-            e.getStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
         return listLocation;
     }
@@ -96,10 +97,52 @@ public class LocationDAO implements ILocationDAO {
 
                 listSearch.add(l);
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return listSearch;
+    }
+    
+    @Override
+    public List<Location> getData(int id, String key) {
+        String query;
+        List<Location> listGetData = new ArrayList();
+
+        if (id == 0 && key.equals("")) { //getAll
+            query = "SELECT * FROM LOCATIONS ORDER BY location_id";
+        } else if (key.equals("")) { //getById
+            query = "SELECT * FROM LOCATIONS WHERE location_id = ?";
+        } else { //search
+            query = "SELECT * FROM locations WHERE location_id LIKE ? OR street_address LIKE ? OR postal_code LIKE ? OR city LIKE ? OR state_province LIKE ? OR country_id LIKE ?";
+        }
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            if (!key.equals("") && id == 0) {
+                key = "%" + key + "%";
+                preparedStatement.setString(1, key);
+                preparedStatement.setString(2, key);
+                preparedStatement.setString(3, key);
+                preparedStatement.setString(4, key);
+                preparedStatement.setString(5, key);
+                preparedStatement.setString(6, key);
+            } else if (key.equals("") && id != 0) {
+                preparedStatement.setInt(1, id);
+            }
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                Location l = new Location(resultSet.getInt(1), resultSet.getString(2),
+                        resultSet.getString(3), resultSet.getString(4),
+                        resultSet.getString(5), resultSet.getString(6));
+
+                listGetData.add(l);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return listGetData;
+
     }
 
     @Override
@@ -117,7 +160,7 @@ public class LocationDAO implements ILocationDAO {
             preparedStatement.setString(6, l.getCountryId());
             preparedStatement.executeQuery();
             result = true;
-        } catch (Exception e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return result;
@@ -126,7 +169,7 @@ public class LocationDAO implements ILocationDAO {
     @Override
     public boolean update(Location l) {
         boolean result = false;
-        String query = "UPDATE locations SET state_address = '?', postal_code = '?', city = '?', state_province = '?', country_id = '?' "
+        String query = "UPDATE locations SET street_address = '?', postal_code = '?', city = '?', state_province = '?', country_id = '?' "
                 + "WHERE location_id = ?";
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(query);
@@ -138,8 +181,31 @@ public class LocationDAO implements ILocationDAO {
             preparedStatement.setInt(6, l.getId());
             preparedStatement.executeQuery();
             result = true;
-        } catch (Exception e) {
-            e.getStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+    
+    public boolean save(Location l) {
+        boolean result = false;
+        
+        String query = (getById(l.getId()).isEmpty()) 
+                ? "INSERT INTO LOCATIONS(street_address, postal_code,city,state_province,country_id,Location_id) VALUES (?,?,?,?,?,?)"
+                : "UPDATE locations SET street_address = ?, postal_code = ?, city = ?, state_province = ?, country_id = ? WHERE location_id = ?";
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(6, l.getId());
+            preparedStatement.setString(1, l.getAddress());
+            preparedStatement.setString(2, l.getPostalCode());
+            preparedStatement.setString(3, l.getCity());
+            preparedStatement.setString(4, l.getStateProvince());
+            preparedStatement.setString(5, l.getCountryId());
+            
+            preparedStatement.executeQuery();
+            result = true;
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
         return result;
     }
@@ -153,8 +219,8 @@ public class LocationDAO implements ILocationDAO {
             preparedStatement.setInt(1, id);
             preparedStatement.executeQuery();
             result = true;
-        } catch (Exception e) {
-            e.getStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
         return result;
     }

@@ -19,6 +19,7 @@ public class Location {
     private String countryId;
 
     public Location() {
+        
     }
 
     public Location(int id, String address, String postalCode, String city, String stateProvince, String countryId) {

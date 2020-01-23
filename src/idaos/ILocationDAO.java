@@ -19,10 +19,14 @@ public interface ILocationDAO {
     public List<Location> getById(int id);
 
     public List<Location> search(String key);
+    
+    public List<Location> getData(int id, String key);
 
     public boolean insert(Location l);
 
     public boolean update(Location l);
+    
+    public boolean save(Location l);
 
     public boolean delete(int id);
 }
