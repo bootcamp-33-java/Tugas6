@@ -28,53 +28,22 @@ public class DepartmentDAO implements IDepartmentDAO {
     }
 
     @Override
-    public List<Department> getAll() {
-        List<Department> listDepartment = new ArrayList<>();
-        String query = "SELECT * FROM DEPARTMENTS ORDER BY DEPARTMENT_ID ASC";
-        try {
-            PreparedStatement preparedStatement = connection.prepareStatement(query);
-            ResultSet resultSet = preparedStatement.executeQuery();
-            while (resultSet.next()) {
-                Department d = new Department(resultSet.getInt(1), resultSet.getString(2), resultSet.getInt(3), resultSet.getInt(4));
-                d.setId(resultSet.getInt(1));
-                d.setName(resultSet.getString(2));
-                d.setManagerId(resultSet.getInt(3));
-                d.setLocationId(resultSet.getInt(4));
-                listDepartment.add(d);
-            }
-        } catch (SQLException e) {
-            e.getStackTrace();
-        }
-        return listDepartment;
-    }
+    public List<Department> getData(int id, String key) {
+        String query = (id == 0 && key.equals("")) ? "SELECT * FROM DEPARTMENTS ORDER BY DEPARTMENT_ID ASC"
+                : (key.equals(""))
+                ? "SELECT * FROM DEPARTMENTS WHERE DEPARTMENT_ID = ?"
+                : "SELECT * FROM DEPARTMENTS WHERE REGEXP_LIKE(department_name,?,'i') OR REGEXP_LIKE(department_id,?,'i')";
 
-    @Override
-    public List<Department> getById(int id) {
-        List<Department> listDepartment = new ArrayList<>();
-        String query = "SELECT * FROM DEPARTMENTS WHERE DEPARTMENT_ID = ?";
-        try {
-            PreparedStatement preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setInt(1, id);
-            ResultSet resultSet = preparedStatement.executeQuery();
-            while (resultSet.next()) {//memeriksa apakah 
-                Department d = new Department(resultSet.getInt(1), resultSet.getString(2), resultSet.getInt(3), resultSet.getInt(4));
-                listDepartment.add(d);
-            }
-        } catch (SQLException e) {
-            e.getStackTrace();
-        }
-        return listDepartment;
-    }
+        List<Department> departments = new ArrayList();
 
-    @Override
-    public List<Department> search(String key) {
-        List<Department> departments = new ArrayList<>();
-        String query = "SELECT * FROM DEPARTMENTS WHERE DEPARTMENT_ID LIKE ? OR DEPARTMENT_NAME LIKE ?";
         try {
-            key = "%"+key+"%";
             PreparedStatement preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setString(1, key);
-             preparedStatement.setString(2, key);
+            if (key.equals("") && 0 != id) {
+                preparedStatement.setInt(1, id);
+            } else if (!key.equals("") && 0 == id) {
+                preparedStatement.setString(1, key);
+                preparedStatement.setString(2, key);
+            }
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 Department d = new Department(resultSet.getInt(1), resultSet.getString(2), resultSet.getInt(3), resultSet.getInt(4));
@@ -83,33 +52,17 @@ public class DepartmentDAO implements IDepartmentDAO {
         } catch (SQLException e) {
             e.getStackTrace();
         }
+
         return departments;
     }
 
     @Override
-    public boolean insert(Department d) {
-
-        String query = "INSERT INTO DEPARTMENTS(DEPARTMENT_ID, DEPARTMENT_NAME, MANAGER_ID, LOCATION_ID) VALUES (?, ?, ?, ?)";
+    public boolean save(Department d) {
+        String query = (getData(d.getId(),"").isEmpty())
+                ? "INSERT INTO DEPARTMENTS(DEPARTMENT_NAME, MANAGER_ID, LOCATION_ID, DEPARTMENT_ID) VALUES (?, ?, ?, ?)"
+                : "UPDATE DEPARTMENTS SET DEPARTMENT_NAME = ?, MANAGER_ID = ?, LOCATION_ID = ? WHERE DEPARTMENT_ID=?";
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setInt(1, d.getId());
-            preparedStatement.setString(2, d.getName());
-            preparedStatement.setInt(3, d.getManagerId());
-            preparedStatement.setInt(4, d.getLocationId());
-            preparedStatement.executeQuery();
-            result = true;
 
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return result;
-    }
-
-    @Override
-    public boolean update(Department d) {
-
-        String query = "UPDATE DEPARTMENTS SET DEPARTMENT_NAME = ?, MANAGER_ID = ?, LOCATION_ID = ? WHERE DEPARTMENT_ID=?";
-        try {
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, d.getName());
             preparedStatement.setInt(2, d.getManagerId());
@@ -137,24 +90,6 @@ public class DepartmentDAO implements IDepartmentDAO {
             e.printStackTrace();
         }
         return result;
-    }
-
-    @Override
-    public List<Department> getByName(String name) {
-        List<Department> listDepartment = new ArrayList<>();
-        String query = "SELECT * FROM DEPARTMENTS WHERE department_name = ?";
-        try {
-            PreparedStatement preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setString(1, name);
-            ResultSet resultSet = preparedStatement.executeQuery();
-            while (resultSet.next()) {//memeriksa apakah 
-                Department d = new Department(resultSet.getInt(1), resultSet.getString(2), resultSet.getInt(3), resultSet.getInt(4));
-                listDepartment.add(d);
-            }
-        } catch (SQLException e) {
-            e.getStackTrace();
-        }
-        return listDepartment;
     }
 
 }

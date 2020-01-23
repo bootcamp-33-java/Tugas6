@@ -13,12 +13,15 @@ import models.Department;
  * @author Insane
  */
 public interface IDepartmentController {
-    
+
     public List<Department> getAll();
+
     public List<Department> getById(String id);
+
     public List<Department> search(String key);
-    public String insert(String id, String name, String managerId, String locationId);
-    public String update(String id, String name, String managerId, String locationId);
+
+    public String save(String id, String name, String managerId, String locationId);
+
     public String delete(String id);
-    public List<Department> getByName(String name);
+
 }

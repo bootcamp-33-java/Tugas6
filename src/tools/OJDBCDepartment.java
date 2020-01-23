@@ -28,8 +28,8 @@ public class OJDBCDepartment {
         }
     }
 
-    public void insert() {
-        System.out.println(iddao.insert("280" , "BOOTCAMP33", "127", "1700"));
+    public void save() {
+        System.out.println(iddao.save("280" , "BOOTCAMP33", "127", "1700"));
     }
 
     public void getById() {
@@ -50,10 +50,6 @@ public class OJDBCDepartment {
         }
     }
 
-    public void update() {
-        System.out.println(iddao.update("270" , "Servant", "127", "1700"));
-
-    }
 
     public void delete() {
         System.out.println(iddao.delete("260"));
@@ -62,11 +58,10 @@ public class OJDBCDepartment {
     public static void main(String[] args) {
         OJDBCDepartment testing = new OJDBCDepartment();
 //        testing.getAll();
-//        testing.insert();
+        testing.save();
 //        testing.getById();
-        testing.search(); //eror
+//        testing.search(); 
 //        testing.delete(); 
-//        testing.update(); 
     }
     
 }
