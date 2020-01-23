@@ -12,12 +12,20 @@ import icontrollers.IDepartmentController;
 import icontrollers.IEmployeeController;
 import icontrollers.ILocationController;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import models.Department;
 import models.Employee;
 import models.Location;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.view.JasperViewer;
 import tools.DBConnection;
 
 /**
@@ -33,26 +41,35 @@ public class DepartmentView extends javax.swing.JInternalFrame {
 
     private DefaultTableModel model;
 
+    
     public DepartmentView() {
         initComponents();
-        model = new DefaultTableModel();
-        tblTampil.setModel(model);
-        model.addColumn("No");
-        model.addColumn("Id");
-        model.addColumn("Name");
-        model.addColumn("Manager id");
-        model.addColumn("Location id");
-
-        //set value combobox
-        for (Employee e : iec.getAll()) {
-            cbxManagerId.addItem(String.valueOf(e.getManagerID()));
-        }
-        for (Location l : ilc.getAll()) {
-            cbxLocationId.addItem(String.valueOf(l.getId()));
-        }
-
+        model = (DefaultTableModel) tblTampil.getModel();
         refresh();
+
     }
+//    public DepartmentView() {
+//        initComponents();
+//        model = new DefaultTableModel();
+//        tblTampil.setModel(model);
+//        model.addColumn("No");
+//        model.addColumn("Id");
+//        model.addColumn("Name");
+//        model.addColumn("Manager id");
+//        model.addColumn("Location id");
+//List<Employee> listManagerId=  iec.getAll();
+//List<
+//Set<String> idManager= new HashSet<>(listManagerId);
+////set value combobox
+//        for (Employee e : iec.getAll()) {
+//            cbxManagerId.addItem(String.valueOf(e.getManagerID()));
+//        }
+//        for (Location l : ilc.getAll()) {
+//            cbxLocationId.addItem(String.valueOf(l.getId()));
+//        }
+//
+//        refresh();
+//    }
 
     public void reset() {
         txtId.setEditable(true);
@@ -111,6 +128,7 @@ public class DepartmentView extends javax.swing.JInternalFrame {
         cbxManagerId = new javax.swing.JComboBox<>();
         cbxLocationId = new javax.swing.JComboBox<>();
         btnSearch = new javax.swing.JButton();
+        btnReport = new javax.swing.JButton();
 
         setClosable(true);
         setIconifiable(true);
@@ -202,6 +220,13 @@ public class DepartmentView extends javax.swing.JInternalFrame {
             }
         });
 
+        btnReport.setText("Print Report");
+        btnReport.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReportActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jInternalFrame1Layout = new javax.swing.GroupLayout(jInternalFrame1.getContentPane());
         jInternalFrame1.getContentPane().setLayout(jInternalFrame1Layout);
         jInternalFrame1Layout.setHorizontalGroup(
@@ -248,6 +273,10 @@ public class DepartmentView extends javax.swing.JInternalFrame {
                                     .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap())
+            .addGroup(jInternalFrame1Layout.createSequentialGroup()
+                .addGap(129, 129, 129)
+                .addComponent(btnReport)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jInternalFrame1Layout.setVerticalGroup(
             jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -280,7 +309,9 @@ public class DepartmentView extends javax.swing.JInternalFrame {
                     .addComponent(txtSearch))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(94, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(btnReport)
+                .addContainerGap(77, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -296,7 +327,7 @@ public class DepartmentView extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jInternalFrame1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 5, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -311,20 +342,26 @@ public class DepartmentView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtNameActionPerformed
 
     private void btnRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefreshActionPerformed
+        reset();
         refresh();
     }//GEN-LAST:event_btnRefreshActionPerformed
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-        JOptionPane.showMessageDialog(null, idc.save(txtId.getText(), txtName.getText(), cbxManagerId.getSelectedItem().toString(), cbxLocationId.getSelectedItem().toString()));
-        refresh();
-        reset();
+        int confirm = JOptionPane.showConfirmDialog(this, "Data anda akan dimasukkan", "Konfirmasi", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        if (confirm == JOptionPane.YES_NO_OPTION) {
+            JOptionPane.showMessageDialog(null, idc.save(txtId.getText(), txtName.getText(), cbxManagerId.getSelectedItem().toString(), cbxLocationId.getSelectedItem().toString()));
+            refresh();
+            reset();
+        }
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-
-        JOptionPane.showMessageDialog(null, idc.delete(txtId.getText()));
-        reset();
-        refresh();
+        int confirm = JOptionPane.showConfirmDialog(this, "Data anda akan dihapus", "Konfirmasi", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        if (confirm == JOptionPane.YES_NO_OPTION) {
+            JOptionPane.showMessageDialog(null, idc.delete(txtId.getText()));
+            reset();
+            refresh();
+        }
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void txtSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSearchActionPerformed
@@ -368,10 +405,29 @@ public class DepartmentView extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_btnSearchActionPerformed
 
+    private void btnReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportActionPerformed
+        // TODO add your handling code here:
+        String reportSource = null;
+        String reportDest = null;
+        try {
+            reportSource = System.getProperty("user.dir")+ "/src/reports/reportDepartment.jrxml";
+            reportDest = System.getProperty("user.dir")+ "/src/reports/reportDepartment.report";
+
+            JasperReport jasperReport = JasperCompileManager.compileReport(reportSource);
+            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport,null, connection.getConnection());
+            JasperExportManager.exportReportToPdfFile(jasperPrint,reportDest);
+            JasperViewer.viewReport(jasperPrint,false);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_btnReportActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnRefresh;
+    private javax.swing.JButton btnReport;
     private javax.swing.JButton btnSave;
     private javax.swing.JButton btnSearch;
     private javax.swing.JComboBox<String> cbxLocationId;
