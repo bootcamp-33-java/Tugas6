@@ -3,14 +3,23 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/TUF%20FX504/Documents/NetBeansProjects/Tugas6Rabu/Tugas6/src/views/RegionView.java</file>
-            <file>file:/C:/Users/TUF%20FX504/Documents/NetBeansProjects/Tugas6Rabu/Tugas6/src/icontrollers/ILocationController.java</file>
-            <file>file:/C:/Users/TUF%20FX504/Documents/NetBeansProjects/Tugas6Rabu/Tugas6/src/tools/OJDBCLocation.java</file>
-            <file>file:/C:/Users/TUF%20FX504/Documents/NetBeansProjects/Tugas6Rabu/Tugas6/src/daos/LocationDAO.java</file>
+            <file>file:/C:/Users/TUF%20FX504/Documents/NetBeansProjects/Tugas6Rabu/Tugas6/src/idaos/ICountryDAO.java</file>
+            <file>file:/C:/Users/TUF%20FX504/Documents/NetBeansProjects/Tugas6Rabu/Tugas6/src/views/DepartmentView.java</file>
+            <file>file:/C:/Users/TUF%20FX504/Documents/NetBeansProjects/Tugas6Rabu/Tugas6/src/report/report2.jrxml</file>
             <file>file:/C:/Users/TUF%20FX504/Documents/NetBeansProjects/Tugas6Rabu/Tugas6/src/controllers/LocationController.java</file>
             <file>file:/C:/Users/TUF%20FX504/Documents/NetBeansProjects/Tugas6Rabu/Tugas6/src/idaos/ILocationDAO.java</file>
+            <file>file:/C:/Users/TUF%20FX504/Documents/NetBeansProjects/Tugas6Rabu/Tugas6/src/controllers/CountryController.java</file>
             <file>file:/C:/Users/TUF%20FX504/Documents/NetBeansProjects/Tugas6Rabu/Tugas6/src/views/LocationView.java</file>
             <file>file:/C:/Users/TUF%20FX504/Documents/NetBeansProjects/Tugas6Rabu/Tugas6/src/models/Location.java</file>
+            <file>file:/C:/Users/TUF%20FX504/Documents/NetBeansProjects/Tugas6Rabu/Tugas6/src/report/report.jrxml</file>
+            <file>file:/C:/Users/TUF%20FX504/Documents/NetBeansProjects/Tugas6Rabu/Tugas6/src/views/RegionView.java</file>
+            <file>file:/C:/Users/TUF%20FX504/Documents/NetBeansProjects/Tugas6Rabu/Tugas6/src/views/MainView.java</file>
+            <file>file:/C:/Users/TUF%20FX504/Documents/NetBeansProjects/Tugas6Rabu/Tugas6/src/icontrollers/ILocationController.java</file>
+            <file>file:/C:/Users/TUF%20FX504/Documents/NetBeansProjects/Tugas6Rabu/Tugas6/src/icontrollers/ICountryController.java</file>
+            <file>file:/C:/Users/TUF%20FX504/Documents/NetBeansProjects/Tugas6Rabu/Tugas6/src/idaos/IJobDAO.java</file>
+            <file>file:/C:/Users/TUF%20FX504/Documents/NetBeansProjects/Tugas6Rabu/Tugas6/src/tools/OJDBCLocation.java</file>
+            <file>file:/C:/Users/TUF%20FX504/Documents/NetBeansProjects/Tugas6Rabu/Tugas6/src/daos/LocationDAO.java</file>
+            <file>file:/C:/Users/TUF%20FX504/Documents/NetBeansProjects/Tugas6Rabu/Tugas6/src/views/Report.java</file>
         </group>
     </open-files>
 </project-private>
