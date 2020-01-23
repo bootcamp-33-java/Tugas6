@@ -12,6 +12,7 @@ import icontrollers.IDepartmentController;
 import icontrollers.IEmployeeController;
 import icontrollers.ILocationController;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -41,11 +42,26 @@ public class DepartmentView extends javax.swing.JInternalFrame {
 
     private DefaultTableModel model;
 
-    
     public DepartmentView() {
         initComponents();
         model = (DefaultTableModel) tblTampil.getModel();
         refresh();
+        List<Employee> employees = iec.getAll();
+        List<String> listId = new ArrayList<>();
+        for (int i = 0; i < employees.size(); i++) {
+            listId.add(String.valueOf(employees.get(i).getManagerID()));
+        }
+        Set<String> idManager = new HashSet<>(listId);
+        listId.clear();
+        listId.addAll(idManager);
+        Collections.sort(listId);
+//set value combobox
+        for (String id : listId) {
+            cbxManagerId.addItem(String.valueOf(id));
+        }
+        for (Location l : ilc.getAll()) {
+            cbxLocationId.addItem(String.valueOf(l.getId()));
+        }
 
     }
 //    public DepartmentView() {
@@ -410,13 +426,13 @@ public class DepartmentView extends javax.swing.JInternalFrame {
         String reportSource = null;
         String reportDest = null;
         try {
-            reportSource = System.getProperty("user.dir")+ "/src/reports/reportDepartment.jrxml";
-            reportDest = System.getProperty("user.dir")+ "/src/reports/reportDepartment.report";
+            reportSource = System.getProperty("user.dir") + "/src/reports/reportDepartment.jrxml";
+            reportDest = System.getProperty("user.dir") + "/src/reports/reportDepartment.report";
 
             JasperReport jasperReport = JasperCompileManager.compileReport(reportSource);
-            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport,null, connection.getConnection());
-            JasperExportManager.exportReportToPdfFile(jasperPrint,reportDest);
-            JasperViewer.viewReport(jasperPrint,false);
+            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, null, connection.getConnection());
+            JasperExportManager.exportReportToPdfFile(jasperPrint, reportDest);
+            JasperViewer.viewReport(jasperPrint, false);
 
         } catch (Exception e) {
             e.printStackTrace();
