@@ -35,28 +35,28 @@ return irdao.getData(0,"");    }
     @Override
     public List<Region> search(String key) {
 return irdao.getData(0, key);     }
-    @Override
-    public String insert(String id, String name) {
-    String result ="";
-    Region region= new Region(Integer.parseInt(id), name);
-    if (irdao.insert(region)) {
-        result= "Data Berhasil disimpan";
-    } else {
-        result = "Maaf data gagal disimpan";
-    }
-    return result;
-    }
-    @Override
-    public String update(String id, String name) {
-    String result ="";
-    Region region= new Region(Integer.parseInt(id), name);
-    if (irdao.update(region)) {
-        result= "Data Berhasil diperbarui";
-    } else {
-        result = "Maaf data gagal disimpan";
-    }
-    return result;
-    }
+//    @Override
+//    public String insert(String id, String name) {
+//    String result ="";
+//    Region region= new Region(Integer.parseInt(id), name);
+//    if (irdao.insert(region)) {
+//        result= "Data Berhasil disimpan";
+//    } else {
+//        result = "Maaf data gagal disimpan";
+//    }
+//    return result;
+//    }
+//    @Override
+//    public String update(String id, String name) {
+//    String result ="";
+//    Region region= new Region(Integer.parseInt(id), name);
+//    if (irdao.update(region)) {
+//        result= "Data Berhasil diperbarui";
+//    } else {
+//        result = "Maaf data gagal disimpan";
+//    }
+//    return result;
+//    }
     @Override
     public String delete(String id) {
     String result ="";

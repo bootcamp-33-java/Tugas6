@@ -49,11 +49,11 @@ public class OJDBCEmployees {
         }
     }
     
-    public void getDepartmentId() {
-        for (Department department : iddao.getAll()) {
-            System.out.println(department.getId());
-        }
-    }
+//    public void getDepartmentId() {
+//        for (Department department : iddao.getAll()) {
+//            System.out.println(department.getId());
+//        }
+//    }
 
     public void search() {
         for (Employee employee : irdao.getData(0,"AC_ACCOUNT")) {

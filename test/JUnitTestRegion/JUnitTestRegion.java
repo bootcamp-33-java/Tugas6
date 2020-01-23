@@ -36,19 +36,19 @@ public class JUnitTestRegion {
     List<Region> act2 = irc.search("1");
     Assert.assertNotNull(act2);
     }
-    public void testInsert(){
-    irc.insert("111","NamaSaya");
-    List<Region> m = irc.getById("111");
-    Assert.assertEquals("111", m.get(0).getId());
-    Assert.assertEquals("NamaSaya", m.get(0).getName());
-    
-    }
-    public void testUpdate(){
-    irc.update("111","NamaSayaIni");
-    List<Region> m = irc.getById("111");
-    Assert.assertEquals("111", m.get(0).getId());
-    Assert.assertEquals("NamaSayaIni", m.get(0).getName());
-    }
+//    public void testInsert(){
+//    irc.insert("111","NamaSaya");
+//    List<Region> m = irc.getById("111");
+//    Assert.assertEquals("111", m.get(0).getId());
+//    Assert.assertEquals("NamaSaya", m.get(0).getName());
+//    
+//    }
+//    public void testUpdate(){
+//    irc.update("111","NamaSayaIni");
+//    List<Region> m = irc.getById("111");
+//    Assert.assertEquals("111", m.get(0).getId());
+//    Assert.assertEquals("NamaSayaIni", m.get(0).getName());
+//    }
     public void testDelete(){
     irc.delete("111");
     List<Region> m = irc.getById("111");

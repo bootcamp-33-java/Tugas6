@@ -14,17 +14,17 @@ import java.util.List;
  */
 public interface IRegionDAO {
 
-    public List<Region> getAll();
+//    public List<Region> getAll();
+//
+//    public List<Region> getById(int id);
+//
+//    public List<Region> search(String key);
 
-    public List<Region> getById(int id);
-
-    public List<Region> search(String key);
-
-    public boolean insert(Region r);
+//    public boolean insert(Region r);
     
     public boolean save(Region r);
 
-    public boolean update(Region r);
+//    public boolean update(Region r);
 
     public boolean delete(int id);
     

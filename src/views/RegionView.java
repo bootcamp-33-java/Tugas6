@@ -14,6 +14,12 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import static jdk.nashorn.internal.runtime.Debug.id;
 import models.Region;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.view.JasperViewer;
 import org.junit.Assert;
 import tools.DBConnection;
 
@@ -85,6 +91,7 @@ public class RegionView extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tblRegion = new javax.swing.JTable();
         btnRefresh = new javax.swing.JButton();
+        btnReport = new javax.swing.JButton();
 
         setClosable(true);
 
@@ -149,6 +156,13 @@ public class RegionView extends javax.swing.JInternalFrame {
             }
         });
 
+        btnReport.setText("Report(PDF)");
+        btnReport.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReportActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -172,6 +186,10 @@ public class RegionView extends javax.swing.JInternalFrame {
                                     .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                             .addGroup(layout.createSequentialGroup()
+                                                .addComponent(btnRefresh)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(btnReport))
+                                            .addGroup(layout.createSequentialGroup()
                                                 .addComponent(btnSave)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                                 .addComponent(btnDelete))
@@ -184,10 +202,6 @@ public class RegionView extends javax.swing.JInternalFrame {
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(8, 8, 8)))))
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(btnRefresh)
-                .addGap(155, 155, 155))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -205,12 +219,14 @@ public class RegionView extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSave)
                     .addComponent(btnDelete))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnSearch))
                 .addGap(12, 12, 12)
-                .addComponent(btnRefresh)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnRefresh)
+                    .addComponent(btnReport))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -282,10 +298,28 @@ Object[] row=new Object[3];
     refresh();        // TODO add your handling code here:
     }//GEN-LAST:event_btnRefreshActionPerformed
 
+    private void btnReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportActionPerformed
+       String reportSource = null;
+        String reportDest = null;
+        try {
+            reportSource = System.getProperty("user.dir")+ "/src/reports/reportRegions.jrxml";
+            reportDest = System.getProperty("user.dir")+ "/src/reports/reportRegions.report";
+
+            JasperReport jasperReport = JasperCompileManager.compileReport(reportSource);
+            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport,null, connection.getConnection());
+            JasperExportManager.exportReportToPdfFile(jasperPrint,reportDest);
+            JasperViewer.viewReport(jasperPrint,false);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } // TODO add your handling code here:
+    }//GEN-LAST:event_btnReportActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnRefresh;
+    private javax.swing.JButton btnReport;
     private javax.swing.JButton btnSave;
     private javax.swing.JButton btnSearch;
     private javax.swing.JLabel jLabel1;

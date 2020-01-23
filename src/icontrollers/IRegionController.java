@@ -16,8 +16,8 @@ public interface IRegionController {
     public List<Region> getAll();
     public List<Region> getById(String Id);
     public List<Region> search(String Key);
-    public String insert(String id,String name);
-    public String update(String id, String name);
+//    public String insert(String id,String name);
+//    public String update(String id, String name);
     public String save(String id, String name);
     public String delete(String id);
     
