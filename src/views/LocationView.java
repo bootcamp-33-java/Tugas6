@@ -16,6 +16,12 @@ import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 import models.Country;
 import models.Location;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.view.JasperViewer;
 import tools.DBConnection;
 
 
@@ -25,7 +31,7 @@ import tools.DBConnection;
  */
 public class LocationView extends javax.swing.JInternalFrame {
 
-    
+
      DBConnection connection = new DBConnection();
     ILocationController ilc = new LocationController(connection.getConnection());
     ICountryController icc = new CountryController(connection.getConnection());
@@ -35,17 +41,17 @@ public class LocationView extends javax.swing.JInternalFrame {
     public LocationView() {
         initComponents();
         refresh();
-        
+
         cbCountryId.addItem("Select");
         for (Country c : icc.getAll()) {
             cbCountryId.addItem(String.valueOf(c.getid()));
         }
     }
-    
+
     public void refresh(){
     DefaultTableModel model = (DefaultTableModel) tblLocation.getModel();
-        
-       
+
+
         model.setRowCount(0);
         Object[] row = new Object[7];
         List<Location> location = new ArrayList<>();
@@ -59,8 +65,8 @@ public class LocationView extends javax.swing.JInternalFrame {
             row[5] = location.get(i).getStateProvince();
             row[6] = location.get(i).getCountryId();
             model.addRow(row);
-            
-            
+
+
         }
     }
        public void txtreset(){
@@ -70,7 +76,7 @@ public class LocationView extends javax.swing.JInternalFrame {
         txtCity.setText("");
         txtStateProvince.setText("");
         cbCountryId.setSelectedItem(null);
-        
+
        }
 
     /**
@@ -114,6 +120,7 @@ public class LocationView extends javax.swing.JInternalFrame {
         jLabel6 = new javax.swing.JLabel();
         btnSave = new javax.swing.JButton();
         btnClear = new javax.swing.JButton();
+        btnPrintReport = new javax.swing.JButton();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -235,6 +242,13 @@ public class LocationView extends javax.swing.JInternalFrame {
             }
         });
 
+        btnPrintReport.setText("Print Report");
+        btnPrintReport.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPrintReportActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -272,7 +286,10 @@ public class LocationView extends javax.swing.JInternalFrame {
                             .addComponent(txtCity, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE)
                             .addComponent(txtStateProvince)
                             .addComponent(cbCountryId, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addComponent(btnGetAll)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnGetAll)
+                        .addGap(34, 34, 34)
+                        .addComponent(btnPrintReport))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel9)
                         .addGap(55, 55, 55)
@@ -324,11 +341,13 @@ public class LocationView extends javax.swing.JInternalFrame {
                     .addComponent(jLabel8)
                     .addComponent(btnSearch)
                     .addComponent(btnGetById))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnGetAll)
+                    .addComponent(btnPrintReport))
                 .addGap(4, 4, 4)
-                .addComponent(btnGetAll)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(256, Short.MAX_VALUE))
+                .addContainerGap(240, Short.MAX_VALUE))
         );
 
         pack();
@@ -355,10 +374,10 @@ public class LocationView extends javax.swing.JInternalFrame {
         ListSelectionModel rowSelMod = tblLocation.getSelectionModel();
 
         int i = tblLocation.getSelectedRow();
-        
+
 
         txtreset();
-        
+
         txtLocationId.setText(model.getValueAt(i, 1).toString());
         txtStreetAddress.setText(model.getValueAt(i, 2).toString());
         txtPostalCode.setText(model.getValueAt(i, 3).toString());
@@ -414,7 +433,7 @@ public class LocationView extends javax.swing.JInternalFrame {
             row[6] = location.get(i).getCountryId();
             model.addRow(row);
         }
-        
+
     }//GEN-LAST:event_btnGetByIdActionPerformed
 
     private void txtCityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCityActionPerformed
@@ -440,11 +459,31 @@ public class LocationView extends javax.swing.JInternalFrame {
         txtreset();
     }//GEN-LAST:event_btnClearActionPerformed
 
+    private void btnPrintReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrintReportActionPerformed
+        // TODO add your handling code here:
+    String reportSource = null;
+        String reportDest = null;
+        try {
+            reportSource = System.getProperty("user.dir")+ "/src/report/ReportLocations.jrxml";
+            reportDest = System.getProperty("user.dir")+ "/src/report/ReportLocations.report";
+
+            JasperReport jasperReport = JasperCompileManager.compileReport(reportSource);
+            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport,null, connection.getConnection());
+            JasperExportManager.exportReportToPdfFile(jasperPrint,reportDest);
+            JasperViewer.viewReport(jasperPrint,false);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    
+    }//GEN-LAST:event_btnPrintReportActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnClear;
     private javax.swing.JButton btnGetAll;
     private javax.swing.JButton btnGetById;
+    private javax.swing.JButton btnPrintReport;
     private javax.swing.JButton btnSave;
     private javax.swing.JButton btnSearch;
     private javax.swing.JButton btn_Delete;
