@@ -41,18 +41,10 @@ public interface IEmployeeController {
      * @param name
      * @return 
      */
-    public String insert(String id, String firstName, String lastName, String email, String phoneNumber, 
+    public String save(String id, String firstName, String lastName, String email, String phoneNumber, 
             String hireDate, String jobId, String salary, String commissionPct, String managerId, String departmentId);
 
-    /**
-     * untuk mengupdate data sesuai id
-     * @param id
-     * @param name
-     * @return 
-     */
-    public String update(String id, String firstName, String lastName, String email, String phoneNumber, 
-            String hireDate, String jobId, String salary, String commissionPct, String managerId, String departmentId);
-    
+  
     /**
      * untuk mendelete berdasarkan id atau nama
      * @param id
