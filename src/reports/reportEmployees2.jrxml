@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="de69d3dc-6775-465d-9b90-63d1358fde17">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="defaultValue" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[new Integer("1")]]></defaultValueExpression>
+	</parameter>
 	<queryString language="SQL">
 		<![CDATA[select * from hr.employees]]>
 	</queryString>
@@ -14,6 +20,10 @@
 	<field name="COMMISSION_PCT" class="java.math.BigDecimal"/>
 	<field name="MANAGER_ID" class="java.math.BigDecimal"/>
 	<field name="DEPARTMENT_ID" class="java.math.BigDecimal"/>
+	<variable name="noUrut" class="java.lang.Integer" resetType="None" calculation="Count">
+		<variableExpression><![CDATA[$V{noUrut}]]></variableExpression>
+	</variable>
+	<variable name="variable1" class="java.lang.String"/>
 	<background>
 		<band/>
 	</background>
@@ -26,14 +36,14 @@
 					<textElement>
 						<font size="34" isBold="true"/>
 					</textElement>
-					<text><![CDATA[TITLE]]></text>
+					<text><![CDATA[EMPLOYEE]]></text>
 				</staticText>
 				<staticText>
 					<reportElement x="395" y="43" width="180" height="20" forecolor="#FFFFFF" uuid="8ea9f1fa-4a39-4ea8-9926-ad5d73351343"/>
 					<textElement textAlignment="Right">
 						<font size="14" isBold="false"/>
 					</textElement>
-					<text><![CDATA[Add a description here]]></text>
+					<text><![CDATA[]]></text>
 				</staticText>
 			</frame>
 		</band>
@@ -49,94 +59,94 @@
 			<staticText>
 				<reportElement mode="Opaque" x="0" y="0" width="50" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="c9101d2c-9ead-49c6-ae5e-a264da35620c"/>
 				<textElement textAlignment="Center">
-					<font size="14" isBold="true"/>
+					<font size="12" isBold="true"/>
 				</textElement>
-				<text><![CDATA[EMPLOYEE_ID]]></text>
-			</staticText>
-			<staticText>
-				<reportElement mode="Opaque" x="50" y="0" width="50" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="4e42efed-ca07-478d-9d89-3b2a3221b03a"/>
-				<textElement textAlignment="Center">
-					<font size="14" isBold="true"/>
-				</textElement>
-				<text><![CDATA[FIRST_NAME]]></text>
+				<text><![CDATA[EMP ID]]></text>
 			</staticText>
 			<staticText>
 				<reportElement mode="Opaque" x="100" y="0" width="50" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="34749867-f07b-4354-89be-341161332f36"/>
 				<textElement textAlignment="Center">
-					<font size="14" isBold="true"/>
+					<font size="12" isBold="true"/>
 				</textElement>
-				<text><![CDATA[LAST_NAME]]></text>
+				<text><![CDATA[L NAME]]></text>
 			</staticText>
 			<staticText>
 				<reportElement mode="Opaque" x="150" y="0" width="50" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="bbd1c9c2-9306-4a79-9f95-2db9729abe50"/>
 				<textElement textAlignment="Center">
-					<font size="14" isBold="true"/>
+					<font size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[EMAIL]]></text>
 			</staticText>
 			<staticText>
 				<reportElement mode="Opaque" x="200" y="0" width="50" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="0a1700fa-4c5b-4b46-9291-d5409cec99b8"/>
 				<textElement textAlignment="Center">
-					<font size="14" isBold="true"/>
+					<font size="12" isBold="true"/>
 				</textElement>
-				<text><![CDATA[PHONE_NUMBER]]></text>
+				<text><![CDATA[PHONE]]></text>
 			</staticText>
 			<staticText>
 				<reportElement mode="Opaque" x="250" y="0" width="50" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="59ed06ec-2a7b-4afd-8d08-d16ff0589d06"/>
 				<textElement textAlignment="Center">
-					<font size="14" isBold="true"/>
+					<font size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[HIRE_DATE]]></text>
 			</staticText>
 			<staticText>
 				<reportElement mode="Opaque" x="300" y="0" width="50" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="a4632dee-4f3f-4ea0-8d73-be7352f35c80"/>
 				<textElement textAlignment="Center">
-					<font size="14" isBold="true"/>
+					<font size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[JOB_ID]]></text>
 			</staticText>
 			<staticText>
 				<reportElement mode="Opaque" x="350" y="0" width="50" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="fe2c0d6b-6520-44cc-b79f-ac04db65fdd4"/>
 				<textElement textAlignment="Center">
-					<font size="14" isBold="true"/>
+					<font size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[SALARY]]></text>
 			</staticText>
 			<staticText>
 				<reportElement mode="Opaque" x="400" y="0" width="50" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="1b091071-8256-4679-9af3-402aacfb9adc"/>
 				<textElement textAlignment="Center">
-					<font size="14" isBold="true"/>
+					<font size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[COMMISSION_PCT]]></text>
 			</staticText>
 			<staticText>
 				<reportElement mode="Opaque" x="450" y="0" width="50" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="2f4d53ce-1359-4cbe-b2fa-323461bf1a76"/>
 				<textElement textAlignment="Center">
-					<font size="14" isBold="true"/>
+					<font size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[MANAGER_ID]]></text>
 			</staticText>
 			<staticText>
 				<reportElement mode="Opaque" x="500" y="0" width="50" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="07df7655-3af8-49ca-9ab6-4e7ad8c741d9"/>
 				<textElement textAlignment="Center">
-					<font size="14" isBold="true"/>
+					<font size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[DEPARTMENT_ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="-20" y="0" width="20" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="c764d14e-afb3-4890-82d1-600eecc9fae5"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[NO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="50" y="0" width="50" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="4e42efed-ca07-478d-9d89-3b2a3221b03a"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[F NAME]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="20">
+		<band height="29">
 			<line>
 				<reportElement positionType="FixRelativeToBottom" x="0" y="19" width="555" height="1" uuid="c494597c-5e24-43cc-bebc-278220bda7ec"/>
 			</line>
-			<textField isStretchWithOverflow="true">
-				<reportElement x="0" y="0" width="50" height="20" uuid="ce2fceae-a69c-400d-88d1-3f6256da6221"/>
-				<textElement>
-					<font size="14"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{EMPLOYEE_ID}]]></textFieldExpression>
-			</textField>
 			<textField isStretchWithOverflow="true">
 				<reportElement x="50" y="0" width="50" height="20" uuid="537e0f23-8634-4f94-a32f-6f07d16bf31a"/>
 				<textElement>
@@ -206,6 +216,20 @@
 					<font size="14"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{DEPARTMENT_ID}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="-20" y="0" width="50" height="20" uuid="ce2fceae-a69c-400d-88d1-3f6256da6221"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new Integer($V{noUrut}.intValue()+$P{defaultValue}.intValue())]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="0" y="0" width="50" height="20" uuid="3391196b-23dc-4ba4-a5be-3cdbf42c56de"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{EMPLOYEE_ID}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
