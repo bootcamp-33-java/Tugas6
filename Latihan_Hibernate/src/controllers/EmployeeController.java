@@ -45,8 +45,8 @@ public class EmployeeController implements IEmployeeController {
     }
 
     @Override
-    public String delete(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    public String delete(String id) {
+ iedao.delete(Integer.parseInt(id));   
+    return "yuhu";}
 
 }

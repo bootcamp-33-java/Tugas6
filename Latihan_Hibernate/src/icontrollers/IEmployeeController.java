@@ -21,5 +21,5 @@ public interface IEmployeeController {
     
     public String update (Employee r);
     
-    public String delete (int id);
+    public String delete (String id);
 }
