@@ -298,9 +298,9 @@ public class LocationView extends javax.swing.JInternalFrame {
                         .addComponent(jLabel8)
                         .addGap(18, 18, 18)
                         .addComponent(btnSearch)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnGetById, javax.swing.GroupLayout.PREFERRED_SIZE, 98, Short.MAX_VALUE)))
-                .addContainerGap(48, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnGetById, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(20, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -347,7 +347,7 @@ public class LocationView extends javax.swing.JInternalFrame {
                     .addComponent(btnPrintReport))
                 .addGap(4, 4, 4)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(240, Short.MAX_VALUE))
+                .addContainerGap(248, Short.MAX_VALUE))
         );
 
         pack();

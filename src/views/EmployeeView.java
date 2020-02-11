@@ -117,7 +117,7 @@ public class EmployeeView extends javax.swing.JInternalFrame {
         PlaceHolder holder5 = new PlaceHolder(txtPhone, "087908XXXX");
         PlaceHolder holder6 = new PlaceHolder(txtHire, "MM/DD/YYYY");
         PlaceHolder holder7 = new PlaceHolder(txtSalary, "Masukkan Gaji");
-        PlaceHolder holder8 = new PlaceHolder(txtCommision, "Masukkan Commicion");
+        PlaceHolder holder8 = new PlaceHolder(txtCommision, "X.X");
     }
 
     /**

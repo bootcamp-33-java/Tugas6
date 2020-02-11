@@ -34,7 +34,8 @@ public class EmployeeDAO implements IEmployeeDAO {
                 + "HIRE_DATE, JOB_ID, SALARY, COMMISSION_PCT, MANAGER_ID"
                 + ", DEPARTMENT_ID, EMPLOYEE_ID) VALUES (?,?,?,?,TO_DATE(?, 'mm/dd/yyyy'),?,?,?,?,?,?)"
                 : "UPDATE EMPLOYEES SET FIRST_NAME = ?, LAST_NAME = ?, EMAIL = ?, PHONE_NUMBER = ? "
-                + ", HIRE_DATE = TO_DATE(?, 'mm/dd/yyyy'), JOB_ID = ?, SALARY = ?, COMMISSION_PCT = ?, MANAGER_ID = ?, DEPARTMENT_ID = ? WHERE EMPLOYEE_ID = ?";
+                + ", HIRE_DATE = TO_DATE(?, 'mm/dd/yyyy'), JOB_ID = ?, SALARY = ?,"
+                + " COMMISSION_PCT = ?, MANAGER_ID = ?, DEPARTMENT_ID = ? WHERE EMPLOYEE_ID = ?";
 
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(query);

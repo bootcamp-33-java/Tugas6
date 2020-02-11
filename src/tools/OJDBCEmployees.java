@@ -73,7 +73,7 @@ public class OJDBCEmployees {
 
     
     public void update() {
-        Employee employee = new Employee(207, "Siduliiii", "Boyo", "BOYGMAIL", "55555", "06/07/2002", "AC_ACCOUNT", 8300, 0.2f, 205, 110);
+        Employee employee = new Employee(400, "Siii", "Boyo", "BOYGMAIL", "55555", "06/07/2002", "AC_ACCOUNT", 8300, 0.2f, 205, 110);
         System.out.println(irdao.save(employee));
 
     }
@@ -88,7 +88,7 @@ public class OJDBCEmployees {
     }
     
     public void save() {
-        Employee employee = new Employee(217, "HH", "ooo", "BhDAWD", "55555", "06/07/2002", "AC_ACCOUNT", 8300, 0.2f, 205, 110);
+        Employee employee = new Employee(217, "HH", "iiiii", "BhDAWD", "55555", "06/07/2002", "AC_ACCOUNT", 8300, 0.2f, 205, 110);
         System.out.println(irdao.save(employee));
     }
 
@@ -111,12 +111,12 @@ public class OJDBCEmployees {
         OJDBCEmployees testing = new OJDBCEmployees();
 //       testing.getAll();
 //        testing.insert();
-        testing.getById();
+//        testing.getById();
 //        testing.search();
 //        testing.delete();
 //       testing.update();
 //        testing.getJobId();
 //        testing.getDepartmentId();
-//        testing.save();
+        testing.save();
     }
 }

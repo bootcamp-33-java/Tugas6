@@ -39,6 +39,8 @@ public class RegionView extends javax.swing.JInternalFrame {
         refresh();
 
     }
+    
+    
      public void resetTextDepartment() {
         txtId.setText("");
         txtName.setText("");
